@@ -1,0 +1,19 @@
+1. search for fruit nearby
+  - search for fruit, or heatmap tiles if heatmap indicates that it will spawn before we reach it.
+    - reverse engineer the heatmap formula?
+    - only search for tiles within a distance equal to remaining turns
+    - metric = (points / distance) * (max_distance to normalise) where max_distance = map width + map height
+  - do not choose any that the opponent is closer to
+  
+
+2. auction:
+  - calculate the value of the worst position in the map (using the same optimum path function used to calculate normal path?) 
+    and compare it to current position, in terms of points
+  - auction price should be the difference in value?
+
+3. item:
+  - calculate the best path to a certain depth that you could take after purchasing an item and compare with current?
+
+
+1. create a heatmap based on item locations + provided heatmap
+ - value per tile, then A* to the best square (metric: value/distance)
