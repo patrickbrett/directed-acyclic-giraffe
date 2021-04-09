@@ -53,6 +53,7 @@ def play_turn(game_map: Map, me: Player, opponent: Player, items: list, new_item
                     max_value, max_move = new_value, paths[r][c][1]
                 new_available.add(move)
         available = new_available
+    if max_move is None: max_move = me.location
     print(timer() - start)
     return f'{max_move[0]},{max_move[1]}'
 
