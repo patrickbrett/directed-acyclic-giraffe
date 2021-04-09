@@ -1,3 +1,85 @@
+from aiarena21.client.classes import Player, Map
+
+import random
+import math
+
+def sign(the_int):
+    if the_int <= -1:
+        return -1
+    elif the_int >= 1:
+        return 1
+    else:
+        return 0
+
+
+def get_value_at(items, me_x, me_y, x, y):
+    points_at = items[y][x]
+    manhattan_distance = abs(me_y - y) + abs(me_x - x)
+    value_at = points_at / max(manhattan_distance, 1)
+    return value_at
+
+
+
+def play_powerup(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
+    # powerups are for the weak
+    return ''
+
+
+def play_turn(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
+    me_y, me_x = me.location
+
+    max_value_y = 0
+    max_value_x = 0
+    # find the coordinates of the highest-value square on the board, and move toward it
+    for y in range(game_map.rows):
+        for x in range(game_map.cols):
+            value_at = get_value_at(items, me_x, me_y, x, y)
+            value_at_max = get_value_at(items, me_x, me_y, max_value_x, max_value_y)
+
+            if value_at > value_at_max:
+                max_value_y = y
+                max_value_x = x
+
+    # Calculate path from current square to this square
+    astar_graph = process_map_to_astar_graph(game_map)
+    best_path = aStarAlgorithm(me_y, me_x, max_value_y, max_value_x, astar_graph)
+    print(best_path)
+
+    if len(best_path) < 2:
+        return f'{me.location[0]},{me.location[1]}'
+
+    # Move towards square with max points
+
+    dy = best_path[1][0] - me.location[0]
+    dx = best_path[1][1] - me.location[1]
+
+    new_row = me.location[0] + dy
+    new_col = me.location[1] + dx
+
+    print(me.location, dy, dx, max_value_y, max_value_x, new_row, new_col)
+
+    return f'{new_row},{new_col}'
+
+
+def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
+    # auctions are also for the weak
+    return 0
+
+
+def play_transport(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
+    return f'{random.randint(0, game_map.rows-1)},{random.randint(0, game_map.cols-1)}'
+
+
+
+
+
+
+
+
+
+
+################ A STAR ALGORITHM #######################
+
 class Node:
   def __init__(self, row, col, value):
     self.id = str(row) + "-" + str(col)
@@ -8,7 +90,7 @@ class Node:
     self.estimatedDistanceToEnd = float('inf')
     self.cameFrom = None
 
-# O(w * h * log(w * h)) time | O(w * h) space - where
+# O(w * h * log(w * h)) time | O(w * h) space
 def aStarAlgorithm(startRow, startCol, endRow, endCol, graph):
   nodes = initialiseNodes(graph)
 
@@ -136,7 +218,7 @@ class MinHeap:
         idxToSwap = childOneIdx
       
       if heap[idxToSwap].estimatedDistanceToEnd < heap[currentIdx].estimatedDistanceToEnd:
-        self.swap(curretnIdx, idxToSwap, heap)
+        self.swap(currentIdx, idxToSwap, heap)
         currentIdx = idxToSwap
         childOneIdx = currentIdx * 2 + 1
       else:
@@ -177,6 +259,18 @@ class MinHeap:
   
   def update(self, node):
     self.siftUp(self.nodePositionsInHeap[node.id], self.heap)
+
+
+def process_map_to_astar_graph(game_map):
+    a_star_graph = [[0 for _ in range(game_map.cols)] for _ in range(game_map.rows)]
+
+    for y in range(game_map.rows):
+        for x in range(game_map.cols):
+            is_free = game_map.is_free(y, x)
+            a_star_graph[y][x] = 0 if is_free else 1
+    
+    return a_star_graph
+
 
 # Run
 
