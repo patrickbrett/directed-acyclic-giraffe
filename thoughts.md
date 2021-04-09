@@ -11,3 +11,7 @@ some ways to incorporate A*:
 - then, incorporate calculating A* distance to the point with highest Q score (I'm defining Q score as points / manhattan distance)
 - can also cache the A* result - if we're on the path from A to B and are still aiming for B, then the result is still valid
 - what about finding other things along the way?
+
+--------------
+
+map 6 is an interesting one - it has clear "worst squares" in terms of distance to reach things

@@ -44,20 +44,104 @@ def get_cluster_value(game_map, items, y, x, cluster_size):
     return total_value
 
 
+def get_bike_to_path(me_y, me_x, dest_y, dest_x):
+    curr_y = me_y
+    curr_x = me_x
+
+    y_diff = abs(dest_y - curr_y)
+    x_diff = abs(dest_x - curr_x)
+    the_path = []
+
+    while y_diff > 0 or x_diff > 0:
+        change_y, change_x = 0, 0
+
+        if dest_y > curr_y:
+            change_y = min(dest_y - curr_y, 3)
+        elif dest_y < curr_y:
+            change_y = max(dest_y - curr_y, -3)
+        
+        # x uses whatever's left over
+        if dest_x > curr_x:
+            change_x = min(dest_x - curr_x, 3 - abs(change_y))
+        elif dest_x < curr_x:
+            change_x = max(dest_x - curr_x, -3 + abs(change_y))
+
+        curr_y += change_y
+        curr_x += change_x
+        the_path.append((curr_y, curr_x))
+
+        print(dest_y, curr_y, dest_x, curr_x)
+
+        y_diff = abs(dest_y - curr_y)
+        x_diff = abs(dest_x - curr_x)
+    
+    return the_path
+
 
 def play_powerup(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
     global teleport_to
+    global bike_to
     me_y, me_x = me.location
     op_y, op_x = opponent.location
+
+    cluster_size = 3 # max manhattan distance from central element
+
+    # teleporting is only worth it if the max exploitation within cluster size of cluster_size+1
+    # around the player's current location is less than min_cluster_value_threshold-100
+    # (as that is the cost of teleporting there).
+    # similar for biking but less extreme.
+    cluster_value_around_current_location = get_cluster_value(game_map, items, me_y, me_x, cluster_size)
+
+    ## TRIP MODE - using the bike to move to greener pastures when the current location is pretty dry
+
+    # TODO - think about how this should relate to the opponent's location - currently we don't take it into account at all
+
+    # Also, we can't bike through walls.
     
+    bike_discouragement_factor = 1.5 # otherwise the player rents the bike all the time
+    min_cluster_value_threshold = (30 + cluster_value_around_current_location) * bike_discouragement_factor
+    min_distance_threshold = 5
+    max_distance_threshold = 9
+
+    possible_clusters = []
+    for y in range(game_map.rows):
+        for x in range(game_map.cols):
+            dist_to_player = manhattan_distance(x, y, me_x, me_y)
+            if dist_to_player < min_distance_threshold or dist_to_player > max_distance_threshold:
+                continue
+
+            cluster_value = get_cluster_value(game_map, items, y, x, cluster_size)
+
+            if cluster_value > min_cluster_value_threshold:
+                # check that the path to the cluster is actually available
+                is_avail = path_available(game_map, (me_y, me_x), (y, x), 3)
+
+                if is_avail:
+                    possible_clusters.append((y, x, cluster_value))
+                else:
+                    print(f'path not available: {me_y},{me_x} to {y},{x}')
+
+    possible_clusters.sort(key = lambda x: -x[2]) # cluster value, sorted descending
+
+    print('bike clust', cluster_value_around_current_location, possible_clusters)
+
+    if len(possible_clusters) > 0:
+        # let's go there
+        # work out the path needed
+
+        print('calculating bike2 path')
+        bike_to = get_bike_to_path(me_y, me_x, possible_clusters[0][0], possible_clusters[0][1])
+        print('bike2', bike_to)
+
+        return 'bike'
+
     ## HUNTING MODE - finding clusters of powerups that are well worth teleporting to, that are far away from the opponent
 
-    min_cluster_value_threshold = 150
-    cluster_size = 2 # max manhattan distance from central element
+    teleportation_discouragement_factor = 1.5
+    min_cluster_value_threshold = (100 + cluster_value_around_current_location) * teleportation_discouragement_factor
     min_distance_threshold = 10 # if the player is closer than this, then there is no point teleporting
 
     possible_clusters = []
-    # find all dragonfruits on the map
     for y in range(game_map.rows):
         for x in range(game_map.cols):
             dist_to_opponent = manhattan_distance(x, y, op_x, op_y)
@@ -72,17 +156,12 @@ def play_powerup(game_map: Map, me: Player, opponent: Player, items: list, new_i
     
     possible_clusters.sort(key = lambda x: -x[2]) # cluster value, sorted descending
 
+    print('clust', cluster_value_around_current_location, possible_clusters)
+
     if len(possible_clusters) > 0:
         # let's go there
         teleport_to = f'{possible_clusters[0][0]},{possible_clusters[0][1]}'
-        return teleport_to
-
-
-
-    # TODO: this would only be worth it if the max exploitation within cluster size of cluster_size+1
-    # around the player's current location is less than min_cluster_value_threshold-100
-    # (as that is the cost of teleporting there).
-    # Implement that value calculation or similar.
+        return 'portal gun'
 
     ## -------------
     ## THIEF MODE - stealing powerups off opponent
@@ -136,6 +215,11 @@ def play_turn(game_map: Map, me: Player, opponent: Player, items: list, new_item
     if me.portal_gun:
         print('teleporting to: ' + teleport_to)
         return teleport_to
+    if me.bike and len(bike_to) > 0:
+        print('biking from: ', me.location, 'biking to: ', bike_to)
+        bike_to_dest = bike_to[0]
+        bike_to.pop(0)
+        return f'{bike_to_dest[0]},{bike_to_dest[1]}'
 
     me_y, me_x = me.location
 
@@ -431,3 +515,28 @@ if __name__ == '__main__':
 
   response = aStarAlgorithm(startRow, startCol, endRow, endCol, graph)
   print(response)
+
+
+######### ------------ OTHER MISC ---------------
+
+def cell_available(game_map, row, col):
+    return 0 <= row < game_map.rows and 0 <= col < game_map.cols and game_map.get(row, col) != '#'
+
+# This is modified from the code the server uses
+def path_available(game_map, p1, p2, max_dist):
+    q = [(p1, 0)]
+    seen = [p1]
+    dx = [0, 1, 0, -1]
+    dy = [1, 0, -1, 0]
+    while len(q) > 0:
+        front, dist = q[0]
+        if dist >= max_dist:
+            return False
+        q = q[1:]
+        for d in range(4):
+            new_p = (front[0] + dx[d], front[1] + dy[d])
+            if new_p not in seen and cell_available(game_map, *new_p):
+                if new_p == p2:
+                    return True
+                seen.append(new_p)
+                q.append((new_p, dist + 1))
