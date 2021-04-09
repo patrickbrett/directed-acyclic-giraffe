@@ -12,33 +12,127 @@ def sign(the_int):
         return 0
 
 
-def get_value_at(items, me_x, me_y, x, y):
-    points_at = items[y][x]
+def manhattan_distance(r1, c1, r2, c2):
+  return abs(r2-r1) + abs(c2-c1)
+
+
+def items_around(game_map, items, x, y):
+    # returns total value of items adjacent
+
+    left = items[y][x-1] if x > 0 else 0
+    right = items[y][x+1] if x+1 < game_map.cols else 0
+    up = items[y-1][x] if y > 0 else 0
+    down = items[y+1][x] if y+1 < game_map.rows else 0
+
+    return left + right + up + down
+
+
+def get_value_at(array, me_x, me_y, x, y, distance_penalty_factor=1):
+    points_at = array[y][x]
     manhattan_distance = abs(me_y - y) + abs(me_x - x)
-    value_at = points_at / max(manhattan_distance, 1)
+    value_at = points_at / math.pow(max(manhattan_distance, 1), distance_penalty_factor)
     return value_at
 
 
-
 def play_powerup(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
-    # powerups are for the weak
-    return ''
+    ## HUNTING MODE - finding clusters of powerups that are well worth teleporting to, that are far away from the opponent
+
+    min_cluster_value_threshold = 150
+    cluster_size = 2 # max manhattan distance from central element
+    min_distance_threshold = 10 # if the player is closer than this, then there is no point teleporting
+
+
+
+    # TODO: this would only be worth it if the max exploitation within cluster size of cluster_size+1
+    # around the player's current location is less than min_cluster_value_threshold-100
+    # (as that is the cost of teleporting there).
+    # Implement that value calculation or similar.
+
+    ## -------------
+    ## THIEF MODE - stealing powerups off opponent
+
+    # If opponent's distance to a high value square/area (defined as any square + surrounding squares
+    # with total value >= 60) is less than the player's distance to a dragonfruit,
+    # and the opponent's distance to said dragon fruit is <= 8 squares (manhattan distance),
+    # then teleport to the dragonfruit.
+
+    # TODO - decide if a bike would allow the same thing to be accomplished more cheaply.
+    min_value_threshold = 60 # including cell and all surrounding
+    opponent_max_distance_threshold = 8
+    opponent_min_distance_threshold = 3
+
+    me_y, me_x = me.location
+    op_y, op_x = opponent.location
+
+    value_coords = []
+    # find all dragonfruits on the map
+    for y in range(game_map.rows):
+        for x in range(game_map.cols):
+            cell_value = items[y][x]
+            surrounding_cell_values = items_around(game_map, items, x, y)
+            dist_to_opponent = manhattan_distance(x, y, op_x, op_y)
+            dist_to_player = manhattan_distance(x, y, me_x, me_y)
+            if cell_value + surrounding_cell_values >= min_value_threshold:
+                value_coords.append((y, x, dist_to_opponent, dist_to_player))
+
+    if len(value_coords) == 0:
+        # no squares worth using a powerup for
+        return ''
+
+    players_closest = sorted(value_coords, key=lambda x: x[3])[0]
+    opponents_closest = sorted(value_coords, key=lambda x: x[2])[0]
+
+    # if we don't meet the conditions above, don't use a powerup
+    dist_to_opp = opponents_closest[2] # opponent's nearest dragonfruit distance to opponent
+    dist_to_me = players_closest[3] # my nearest dragonfruit distance to me
+    if dist_to_opp > opponent_max_distance_threshold or dist_to_opp < opponent_min_distance_threshold or dist_to_me < dist_to_opp:
+        print('decided not to teleport', dist_to_me, dist_to_opp)
+        return ''
+
+    print('vc', value_coords, players_closest, opponents_closest)
+
+    global teleport_to
+    teleport_to = f'{opponents_closest[0]},{opponents_closest[1]}'
+
+    print('teleport to: ', teleport_to)
+
+    return 'portal gun'
 
 
 def play_turn(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
+    # if we bought the teleporter, use it!
+    if me.portal_gun:
+        print('teleporting to: ' + teleport_to)
+        return teleport_to
+
     me_y, me_x = me.location
 
     max_value_y = 0
     max_value_x = 0
+    heatmap_max_y = 0
+    heatmap_max_x = 0
     # find the coordinates of the highest-value square on the board, and move toward it
     for y in range(game_map.rows):
         for x in range(game_map.cols):
             value_at = get_value_at(items, me_x, me_y, x, y)
             value_at_max = get_value_at(items, me_x, me_y, max_value_x, max_value_y)
 
+            heatmap_at = get_value_at(heatmap, me_x, me_y, x, y, 0.5)
+            heatmap_at_max = get_value_at(heatmap, me_x, me_y, heatmap_max_x, heatmap_max_y, 0.5)
+
             if value_at > value_at_max:
                 max_value_y = y
                 max_value_x = x
+
+            if heatmap_at >= heatmap_at_max:
+                heatmap_max_y = y
+                heatmap_max_x = x
+
+    if items[max_value_y][max_value_x] == 0:
+        max_value_y = heatmap_max_y
+        max_value_x = heatmap_max_x
+    
+    print(max_value_x, max_value_y)
 
     # Calculate path from current square to this square
     astar_graph = process_map_to_astar_graph(game_map)
@@ -62,12 +156,25 @@ def play_turn(game_map: Map, me: Player, opponent: Player, items: list, new_item
 
 
 def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
-    # auctions are also for the weak
+    # too much lag!
     return 0
+
+    global value_map
+    value_map = calculate_value_map(game_map, items, heatmap)
+    row, col = me.location[0], me.location[1]
+    current_value = eval_tile(min(SEARCH_DEPTH, remaining_turns), row, col, game_map, items, heatmap)
+    worst_tile = np.unravel_index(np.argmin(value_map), value_map.shape)
+    worst_value = eval_tile(min(SEARCH_DEPTH, remaining_turns), worst_tile[0], worst_tile[1], game_map, items, heatmap)
+    r =  math.floor((current_value - worst_value))
+    return r
 
 
 def play_transport(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
-    return f'{random.randint(0, game_map.rows-1)},{random.randint(0, game_map.cols-1)}'
+    # one way we could possibly find the worst square is to calculate the number of fruits within 
+    # a given manhattan distance threshold of it.
+    
+    worst_tile = np.unravel_index(np.argmin(value_map), value_map.shape)
+    return f'{worst_tile[0], worst_tile[1]}'
 
 
 
