@@ -1,0 +1,6 @@
+pygame 2.0.1 (SDL 2.0.14, Python 3.8.2)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+Picking powerups...
+pygame 2.0.1 (SDL 2.0.14, Python 3.8.2)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+Replay over.

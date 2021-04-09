@@ -58,6 +58,9 @@ def play_turn(game_map: Map, me: Player, opponent: Player, items: list, new_item
 
 
 def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
+  # too much lag!
+  return 0
+
   global value_map
   value_map = calculate_value_map(game_map, items, heatmap)
   row, col = me.location[0], me.location[1]
