@@ -1,1059 +1,183 @@
 pygame 2.0.1 (SDL 2.0.14, Python 3.8.2)
 Hello from the pygame community. https://www.pygame.org/contribute.html
-Picking powerups...
-It's my turn!
-17 7
-[[10, 8], [9, 8], [8, 8], [8, 9], [7, 9], [7, 10], [7, 11], [7, 12], [7, 13], [7, 14], [7, 15], [7, 16], [7, 17]]
-[10, 8] -1 0 7 17 9 8
-Picking powerups...
-It's my turn!
-17 7
-[[9, 8], [8, 8], [8, 9], [8, 10], [7, 10], [7, 11], [7, 12], [7, 13], [7, 14], [7, 15], [7, 16], [7, 17]]
-[9, 8] -1 0 7 17 8 8
-Picking powerups...
-It's my turn!
-7 8
-[[8, 8], [8, 7]]
-[8, 8] 0 -1 8 7 8 7
-Picking powerups...
-It's my turn!
-7 8
-[]
-Picking powerups...
-It's my turn!
-7 8
-[]
-Picking powerups...
-It's my turn!
-7 8
-[]
-Picking powerups...
-It's my turn!
-7 8
-[]
-Picking powerups...
-It's my turn!
-7 8
-[]
-Picking powerups...
-It's my turn!
-7 8
-[]
-Picking powerups...
-It's my turn!
-7 8
-[]
-Picking powerups...
-It's my turn!
-7 8
-[]
-Picking powerups...
-It's my turn!
-7 8
-[]
-Picking powerups...
-It's my turn!
-7 8
-[]
-Picking powerups...
-It's my turn!
-7 8
-[]
-Picking powerups...
-It's my turn!
-7 8
-[]
-Picking powerups...
-It's my turn!
-7 8
-[]
-Picking powerups...
-It's my turn!
-7 8
-[]
-Picking powerups...
-It's my turn!
-7 8
-[]
-Picking powerups...
-It's my turn!
-7 8
-[]
-Picking powerups...
-It's my turn!
-7 8
-[]
-Picking powerups...
-decided not to teleport 49 1
-It's my turn!
-7 8
-[]
-Picking powerups...
-It's my turn!
-5 9
-[[8, 7], [9, 7], [9, 6], [9, 5]]
-[8, 7] 1 0 9 5 9 7
-Picking powerups...
-It's my turn!
-5 9
-[[9, 7], [9, 6], [9, 5]]
-[9, 7] 0 -1 9 5 9 6
-Picking powerups...
-It's my turn!
-5 9
-[[9, 6], [9, 5]]
-[9, 6] 0 -1 9 5 9 5
-Picking powerups...
-It's my turn!
-4 11
-[[9, 5], [10, 5], [11, 5], [11, 4]]
-[9, 5] 1 0 11 4 10 5
-Picking powerups...
-It's my turn!
-4 11
-[[10, 5], [11, 5], [11, 4]]
-[10, 5] 1 0 11 4 11 5
-Picking powerups...
-It's my turn!
-4 11
-[[11, 5], [11, 4]]
-[11, 5] 0 -1 11 4 11 4
-Picking powerups...
-It's my turn!
-4 10
-[[11, 4], [10, 4]]
-[11, 4] -1 0 10 4 10 4
-Picking powerups...
-It's my turn!
-17 7
-[[10, 4], [9, 4], [8, 4], [8, 5], [7, 5], [7, 6], [7, 7], [7, 8], [7, 9], [7, 10], [7, 11], [7, 12], [7, 13], [7, 14], [7, 15], [7, 16], [7, 17]]
-[10, 4] -1 0 7 17 9 4
-Picking powerups...
-It's my turn!
-17 7
-[[9, 4], [8, 4], [8, 5], [8, 6], [7, 6], [7, 7], [7, 8], [7, 9], [7, 10], [7, 11], [7, 12], [7, 13], [7, 14], [7, 15], [7, 16], [7, 17]]
-[9, 4] -1 0 7 17 8 4
-Picking powerups...
-It's my turn!
-17 7
-[[8, 4], [7, 4], [7, 5], [7, 6], [7, 7], [7, 8], [7, 9], [7, 10], [7, 11], [7, 12], [7, 13], [7, 14], [7, 15], [7, 16], [7, 17]]
-[8, 4] -1 0 7 17 7 4
-Got into an auction.
-Picking powerups...
-It's my turn!
-17 7
-[[9, 7], [8, 7], [8, 8], [8, 9], [7, 9], [7, 10], [7, 11], [7, 12], [7, 13], [7, 14], [7, 15], [7, 16], [7, 17]]
-[9, 7] -1 0 7 17 8 7
-Picking powerups...
-It's my turn!
-17 7
-[[8, 7], [7, 7], [7, 8], [7, 9], [7, 10], [7, 11], [7, 12], [7, 13], [7, 14], [7, 15], [7, 16], [7, 17]]
-[8, 7] -1 0 7 17 7 7
-Picking powerups...
-It's my turn!
-17 7
-[[7, 7], [7, 8], [7, 9], [7, 10], [7, 11], [7, 12], [7, 13], [7, 14], [7, 15], [7, 16], [7, 17]]
-[7, 7] 0 1 7 17 7 8
-Picking powerups...
-It's my turn!
-17 7
-[[7, 8], [7, 9], [7, 10], [7, 11], [7, 12], [7, 13], [7, 14], [7, 15], [7, 16], [7, 17]]
-[7, 8] 0 1 7 17 7 9
-Picking powerups...
-It's my turn!
-17 7
-[[7, 9], [7, 10], [7, 11], [7, 12], [7, 13], [7, 14], [7, 15], [7, 16], [7, 17]]
-[7, 9] 0 1 7 17 7 10
-Picking powerups...
-It's my turn!
-17 7
-[[7, 10], [7, 11], [7, 12], [7, 13], [7, 14], [7, 15], [7, 16], [7, 17]]
-[7, 10] 0 1 7 17 7 11
-Picking powerups...
-It's my turn!
-17 7
-[[7, 11], [7, 12], [7, 13], [7, 14], [7, 15], [7, 16], [7, 17]]
-[7, 11] 0 1 7 17 7 12
-Picking powerups...
-It's my turn!
-17 7
-[[7, 12], [7, 13], [7, 14], [7, 15], [7, 16], [7, 17]]
-[7, 12] 0 1 7 17 7 13
-Picking powerups...
-It's my turn!
-17 7
-[[7, 13], [7, 14], [7, 15], [7, 16], [7, 17]]
-[7, 13] 0 1 7 17 7 14
-Picking powerups...
-It's my turn!
-17 7
-[[7, 14], [7, 15], [7, 16], [7, 17]]
-[7, 14] 0 1 7 17 7 15
-Picking powerups...
-It's my turn!
-17 7
-[[7, 15], [7, 16], [7, 17]]
-[7, 15] 0 1 7 17 7 16
-Picking powerups...
-It's my turn!
-17 7
-[[7, 16], [7, 17]]
-[7, 16] 0 1 7 17 7 17
-Picking powerups...
-It's my turn!
-17 5
-[[7, 17], [8, 17], [9, 17], [10, 17], [10, 18], [10, 19], [10, 20], [9, 20], [8, 20], [7, 20], [6, 20], [5, 20], [5, 19], [5, 18], [5, 17]]
-[7, 17] 1 0 5 17 8 17
-Picking powerups...
-It's my turn!
-16 8
-[[8, 17], [8, 16]]
-[8, 17] 0 -1 8 16 8 16
-Picking powerups...
-It's my turn!
-16 11
-[[8, 16], [9, 16], [10, 16], [11, 16]]
-[8, 16] 1 0 11 16 9 16
-Picking powerups...
-It's my turn!
-16 11
-[[9, 16], [10, 16], [11, 16]]
-[9, 16] 1 0 11 16 10 16
-Picking powerups...
-It's my turn!
-16 11
-[[10, 16], [11, 16]]
-[10, 16] 1 0 11 16 11 16
-Picking powerups...
-It's my turn!
-13 11
-[[11, 16], [11, 15], [11, 14], [11, 13]]
-[11, 16] 0 -1 11 13 11 15
-Picking powerups...
-It's my turn!
-13 11
-[[11, 15], [11, 14], [11, 13]]
-[11, 15] 0 -1 11 13 11 14
-Picking powerups...
-It's my turn!
-13 11
-[[11, 14], [11, 13]]
-[11, 14] 0 -1 11 13 11 13
-Picking powerups...
-It's my turn!
-11 17
-[[11, 13], [12, 13], [13, 13], [13, 12], [14, 12], [15, 12], [15, 11], [16, 11], [17, 11]]
-[11, 13] 1 0 17 11 12 13
-Picking powerups...
-It's my turn!
-11 17
-[[12, 13], [13, 13], [13, 12], [13, 11], [14, 11], [15, 11], [16, 11], [17, 11]]
-[12, 13] 1 0 17 11 13 13
-Picking powerups...
-It's my turn!
-11 17
-[[13, 13], [14, 13], [14, 12], [14, 11], [15, 11], [16, 11], [17, 11]]
-[13, 13] 1 0 17 11 14 13
-Picking powerups...
-It's my turn!
-11 17
-[[14, 13], [15, 13], [16, 13], [16, 12], [17, 12], [17, 11]]
-[14, 13] 1 0 17 11 15 13
-Picking powerups...
-It's my turn!
-11 17
-[[15, 13], [16, 13], [17, 13], [17, 12], [17, 11]]
-[15, 13] 1 0 17 11 16 13
-Picking powerups...
-It's my turn!
-11 17
-[[16, 13], [17, 13], [17, 12], [17, 11]]
-[16, 13] 1 0 17 11 17 13
-Got into an auction.
-Picking powerups...
-It's my turn!
-59 13
-[[14, 58], [13, 58], [13, 59]]
-[14, 58] -1 0 13 59 13 58
-Picking powerups...
-It's my turn!
-59 13
-[[13, 58], [13, 59]]
-[13, 58] 0 1 13 59 13 59
-Picking powerups...
-It's my turn!
-60 4
-[[13, 59], [12, 59], [11, 59], [11, 60], [10, 60], [9, 60], [8, 60], [7, 60], [6, 60], [5, 60], [4, 60]]
-[13, 59] -1 0 4 60 12 59
-Picking powerups...
-decided not to teleport 29 14
-It's my turn!
-59 10
-[[12, 59], [11, 59], [10, 59]]
-[12, 59] -1 0 10 59 11 59
-Picking powerups...
-decided not to teleport 28 15
-It's my turn!
-59 10
-[[11, 59], [10, 59]]
-[11, 59] -1 0 10 59 10 59
-Picking powerups...
-decided not to teleport 27 16
-It's my turn!
-60 4
-[[10, 59], [9, 59], [8, 59], [8, 60], [7, 60], [6, 60], [5, 60], [4, 60]]
-[10, 59] -1 0 4 60 9 59
-Picking powerups...
-decided not to teleport 26 16
-It's my turn!
-60 4
-[[9, 59], [8, 59], [7, 59], [7, 60], [6, 60], [5, 60], [4, 60]]
-[9, 59] -1 0 4 60 8 59
-Picking powerups...
-decided not to teleport 25 17
-It's my turn!
-60 4
-[[8, 59], [7, 59], [6, 59], [6, 60], [5, 60], [4, 60]]
-[8, 59] -1 0 4 60 7 59
-Picking powerups...
-decided not to teleport 24 18
-It's my turn!
-60 4
-[[7, 59], [6, 59], [5, 59], [5, 60], [4, 60]]
-[7, 59] -1 0 4 60 6 59
-Picking powerups...
-decided not to teleport 23 18
-It's my turn!
-60 4
-[[6, 59], [5, 59], [4, 59], [4, 60]]
-[6, 59] -1 0 4 60 5 59
-Picking powerups...
-decided not to teleport 22 19
-It's my turn!
-60 4
-[[5, 59], [4, 59], [4, 60]]
-[5, 59] -1 0 4 60 4 59
-Picking powerups...
-decided not to teleport 22 19
-It's my turn!
-60 4
-[[4, 59], [4, 60]]
-[4, 59] 0 1 4 60 4 60
-Picking powerups...
-decided not to teleport 23 20
-It's my turn!
-61 2
-[[4, 60], [3, 60], [3, 61], [2, 61]]
-[4, 60] -1 0 2 61 3 60
-Picking powerups...
-decided not to teleport 23 21
-It's my turn!
-61 2
-[[3, 60], [3, 61], [2, 61]]
-[3, 60] 0 1 2 61 3 61
-Picking powerups...
-decided not to teleport 24 21
-It's my turn!
-61 2
-[[3, 61], [2, 61]]
-[3, 61] -1 0 2 61 2 61
-Picking powerups...
-decided not to teleport 23 20
-It's my turn!
-59 0
-[[2, 61], [3, 61], [3, 60], [3, 59], [3, 58], [3, 57], [3, 56], [3, 55], [3, 54], [2, 54], [1, 54], [0, 54], [0, 55], [0, 56], [0, 57], [0, 58], [0, 59]]
-[2, 61] 1 0 0 59 3 61
-Picking powerups...
-decided not to teleport 24 19
-It's my turn!
-59 0
-[[3, 61], [3, 60], [3, 59], [3, 58], [3, 57], [3, 56], [3, 55], [3, 54], [2, 54], [1, 54], [0, 54], [0, 55], [0, 56], [0, 57], [0, 58], [0, 59]]
-[3, 61] 0 -1 0 59 3 60
-Picking powerups...
-decided not to teleport 23 18
-It's my turn!
-59 0
-[[3, 60], [3, 59], [3, 58], [3, 57], [3, 56], [3, 55], [3, 54], [2, 54], [1, 54], [0, 54], [0, 55], [0, 56], [0, 57], [0, 58], [0, 59]]Picking powerups...
-It's my turn!
-54 11
-[[10, 53], [11, 53], [11, 54]]
-[10, 53] 1 0 11 54 11 53
-Picking powerups...
-It's my turn!
-54 11
-[[11, 53], [11, 54]]
-[11, 53] 0 1 11 54 11 54
-Picking powerups...
-It's my turn!
-54 11
-[]
-Picking powerups...
-It's my turn!
-54 11
-[]
-Picking powerups...
-It's my turn!
-54 11
-[]
-Picking powerups...
-It's my turn!
-54 11
-[]
-Picking powerups...
-It's my turn!
-54 11
-[]
-Picking powerups...
-It's my turn!
-54 11
-[]
-Picking powerups...
-It's my turn!
-54 11
-[]
-Picking powerups...
-It's my turn!
-54 11
-[]
-Picking powerups...
-It's my turn!
-54 11
-[]
-Picking powerups...
-It's my turn!
-54 11
-[]
-Picking powerups...
-It's my turn!
-54 11
-[]
-Picking powerups...
-It's my turn!
-54 11
-[]
-Picking powerups...
-It's my turn!
-54 11
-[]
-Picking powerups...
-It's my turn!
-54 11
-[]
-Picking powerups...
-It's my turn!
-54 11
-[]
-Picking powerups...
-It's my turn!
-54 11
-[]
-Picking powerups...
-It's my turn!
-54 11
-[]
-Picking powerups...
-It's my turn!
-54 11
-[]
-Picking powerups...
-decided not to teleport 1 49
-It's my turn!
-54 11
-[]
-Picking powerups...
-It's my turn!
-53 12
-[[11, 54], [12, 54], [12, 53]]
-[11, 54] 1 0 12 53 12 54
-Picking powerups...
-It's my turn!
-53 12
-[[12, 54], [12, 53]]
-[12, 54] 0 -1 12 53 12 53
-Picking powerups...
-It's my turn!
-52 13
-[[12, 53], [13, 53], [13, 52]]
-[12, 53] 1 0 13 52 13 53
-Picking powerups...
-It's my turn!
-52 13
-[[13, 53], [13, 52]]
-[13, 53] 0 -1 13 52 13 52
-Picking powerups...
-It's my turn!
-47 16
-[[13, 52], [13, 53], [13, 54], [14, 54], [15, 54], [16, 54], [16, 53], [16, 52], [16, 51], [16, 50], [16, 49], [16, 48], [16, 47]]
-[13, 52] 0 1 16 47 13 53
-Picking powerups...
-It's my turn!
-55 13
-[[13, 53], [13, 54], [13, 55]]
-[13, 53] 0 1 13 55 13 54
-Picking powerups...
-It's my turn!
-55 13
-[[13, 54], [13, 55]]
-[13, 54] 0 1 13 55 13 55
-Picking powerups...
-It's my turn!
-47 16
-[[13, 55], [14, 55], [15, 55], [15, 54], [16, 54], [16, 53], [16, 52], [16, 51], [16, 50], [16, 49], [16, 48], [16, 47]]
-[13, 55] 1 0 16 47 14 55
-Picking powerups...
-It's my turn!
-47 16
-[[14, 55], [15, 55], [16, 55], [16, 54], [16, 53], [16, 52], [16, 51], [16, 50], [16, 49], [16, 48], [16, 47]]
-[14, 55] 1 0 16 47 15 55
-Picking powerups...
-It's my turn!
-47 16
-[[15, 55], [16, 55], [16, 54], [16, 53], [16, 52], [16, 51], [16, 50], [16, 49], [16, 48], [16, 47]]
-[15, 55] 1 0 16 47 16 55
-Got into an auction.
-Picking powerups...
-It's my turn!
-17 7
-[[7, 23], [7, 22], [7, 21], [7, 20], [8, 20], [9, 20], [10, 20], [10, 19], [10, 18], [9, 18], [9, 17], [8, 17], [7, 17]]
-[7, 23] 0 -1 7 17 7 22
-Picking powerups...
-It's my turn!
-17 7
-[[7, 22], [7, 21], [7, 20], [8, 20], [9, 20], [10, 20], [10, 19], [10, 18], [9, 18], [8, 18], [7, 18], [7, 17]]
-[7, 22] 0 -1 7 17 7 21
-Picking powerups...
-It's my turn!
-17 7
-[[7, 21], [7, 20], [8, 20], [9, 20], [10, 20], [10, 19], [10, 18], [9, 18], [8, 18], [7, 18], [7, 17]]
-[7, 21] 0 -1 7 17 7 20
-Picking powerups...
-It's my turn!
-17 7
-[[7, 20], [8, 20], [9, 20], [10, 20], [10, 19], [10, 18], [9, 18], [8, 18], [7, 18], [7, 17]]
-[7, 20] 1 0 7 17 8 20
-Picking powerups...
-It's my turn!
-17 7
-[[8, 20], [9, 20], [10, 20], [10, 19], [10, 18], [9, 18], [9, 17], [8, 17], [7, 17]]
-[8, 20] 1 0 7 17 9 20
-Picking powerups...
-It's my turn!
-17 7
-[[9, 20], [10, 20], [10, 19], [10, 18], [9, 18], [8, 18], [7, 18], [7, 17]]
-[9, 20] 1 0 7 17 10 20
-Picking powerups...
-It's my turn!
-20 11
-[[10, 20], [11, 20]]
-[10, 20] 1 0 11 20 11 20
-Picking powerups...
-It's my turn!
-18 11
-[[11, 20], [11, 19], [11, 18]]
-[11, 20] 0 -1 11 18 11 19
-Picking powerups...
-It's my turn!
-18 11
-[[11, 19], [11, 18]]
-[11, 19] 0 -1 11 18 11 18
-Picking powerups...
-It's my turn!
-18 12
-[[11, 18], [12, 18]]
-[11, 18] 1 0 12 18 12 18
-Picking powerups...
-It's my turn!
-20 14
-[[12, 18], [12, 19], [12, 20], [13, 20], [14, 20]]
-[12, 18] 0 1 14 20 12 19
-Picking powerups...
-It's my turn!
-20 14
-[[12, 19], [12, 20], [13, 20], [14, 20]]
-[12, 19] 0 1 14 20 12 20
-Picking powerups...
-It's my turn!
-20 14
-[[12, 20], [13, 20], [14, 20]]
-[12, 20] 1 0 14 20 13 20
-Picking powerups...
-It's my turn!
-20 14
-[[13, 20], [14, 20]]
-[13, 20] 1 0 14 20 14 20
-Picking powerups...
-It's my turn!
-18 15
-[[14, 20], [15, 20], [15, 19], [15, 18]]
-[14, 20] 1 0 15 18 15 20
-Picking powerups...
-It's my turn!
-18 15
-[[15, 20], [15, 19], [15, 18]]
-[15, 20] 0 -1 15 18 15 19
-Picking powerups...
-It's my turn!
-18 15
-[[15, 19], [15, 18]]
-[15, 19] 0 -1 15 18 15 18
-Picking powerups...
-It's my turn!
-11 17
-[[15, 18], [16, 18], [17, 18], [17, 17], [17, 16], [17, 15], [17, 14], [17, 13], [17, 12], [17, 11]]
-[15, 18] 1 0 17 11 16 18
-Picking powerups...
-It's my turn!
-19 17
-[[16, 18], [17, 18], [17, 19]]
-[16, 18] 1 0 17 19 17 18
-Picking powerups...
-It's my turn!
-19 17
-[[17, 18], [17, 19]]
-[17, 18] 0 1 17 19 17 19
-Picking powerups...
-It's my turn!
-11 17
-[[17, 19], [17, 18], [17, 17], [17, 16], [17, 15], [17, 14], [17, 13], [17, 12], [17, 11]]
-[17, 19] 0 -1 17 11 17 18
-Picking powerups...
-It's my turn!
-16 17
-[[17, 18], [17, 17], [17, 16]]
-[17, 18] 0 -1 17 16 17 17
-Picking powerups...
-It's my turn!
-16 17
-[[17, 17], [17, 16]]
-[17, 17] 0 -1 17 16 17 16
-Picking powerups...
-It's my turn!
-11 17
-[[17, 16], [17, 15], [17, 14], [17, 13], [17, 12], [17, 11]]
-[17, 16] 0 -1 17 11 17 15
-Picking powerups...
-It's my turn!
-11 17
-[[17, 15], [17, 14], [17, 13], [17, 12], [17, 11]]
-[17, 15] 0 -1 17 11 17 14
-Picking powerups...
-It's my turn!
-11 17
-[[17, 14], [17, 13], [17, 12], [17, 11]]
-[17, 14] 0 -1 17 11 17 13
-Got into an auction.
-Picking powerups...
-It's my turn!
-53 5
-[[7, 50], [6, 50], [5, 50], [5, 51], [5, 52], [5, 53]]
-[7, 50] -1 0 5 53 6 50
-Picking powerups...
-It's my turn!
-53 5
-[[6, 50], [5, 50], [5, 51], [5, 52], [5, 53]]
-[6, 50] -1 0 5 53 5 50
-Picking powerups...
-It's my turn!
-53 5
-[[5, 50], [5, 51], [5, 52], [5, 53]]
-[5, 50] 0 1 5 53 5 51
-Picking powerups...
-decided not to teleport 14 29
-It's my turn!
-53 5
-[[5, 51], [5, 52], [5, 53]]
-[5, 51] 0 1 5 53 5 52
-Picking powerups...
-decided not to teleport 15 28
-It's my turn!
-53 5
-[[5, 52], [5, 53]]
-[5, 52] 0 1 5 53 5 53
-Picking powerups...
-decided not to teleport 16 27
-It's my turn!
-54 4
-[[5, 53], [4, 53], [4, 54]]
-[5, 53] -1 0 4 54 4 53
-Picking powerups...
-decided not to teleport 16 26
-It's my turn!
-54 4
-[[4, 53], [4, 54]]
-[4, 53] 0 1 4 54 4 54
-Picking powerups...
-decided not to teleport 17 25
-It's my turn!
-60 4
-[[4, 54], [4, 55], [4, 56], [4, 57], [4, 58], [4, 59], [4, 60]]
-[4, 54] 0 1 4 60 4 55
-Picking powerups...
-decided not to teleport 18 24
-It's my turn!
-56 5
-[[4, 55], [5, 55], [5, 56]]
-[4, 55] 1 0 5 56 5 55
-Picking powerups...
-decided not to teleport 18 23
-It's my turn!
-56 5
-[[5, 55], [5, 56]]
-[5, 55] 0 1 5 56 5 56
-Picking powerups...
-decided not to teleport 19 22
-It's my turn!
-60 4
-[[5, 56], [4, 56], [4, 57], [4, 58], [4, 59], [4, 60]]
-[5, 56] -1 0 4 60 4 56
-Picking powerups...
-decided not to teleport 19 22
-It's my turn!
-60 4
-[[4, 56], [4, 57], [4, 58], [4, 59], [4, 60]]
-[4, 56] 0 1 4 60 4 57
-Picking powerups...
-decided not to teleport 20 23
-It's my turn!
-58 4
-[[4, 57], [4, 58]]
-[4, 57] 0 1 4 58 4 58
-Picking powerups...
-decided not to teleport 21 23
-It's my turn!
-59 0
-[[4, 58], [3, 58], [3, 57], [3, 56], [3, 55], [3, 54], [2, 54], [1, 54], [0, 54], [0, 55], [0, 56], [0, 57], [0, 58], [0, 59]]
-[4, 58] -1 0 0 59 3 58
-Picking powerups...
-decided not to teleport 21 24
-It's my turn!
-59 0
-[[3, 58], [3, 57], [3, 56], [3, 55], [3, 54], [2, 54], [1, 54], [0, 54], [0, 55], [0, 56], [0, 57], [0, 58], [0, 59]]
-[3, 58] 0 -1 0 59 3 57
-Picking powerups...
-decided not to teleport 20 23
-It's my turn!
-55 1
-[[3, 57], [3, 56], [3, 55], [3, 54], [2, 54], [1, 54], [1, 55]]
-[3, 57] 0 -1 1 55 3 56
-Picking powerups...
-decided not to teleport 19 24
-It's my turn!
-55 1
-[[3, 56], [3, 55], [3, 54], [2, 54], [1, 54], [1, 55]]
-[3, 56] 0 -1 1 55 3 55
-Picking powerups...
-decided not to teleport 18 23
-It's my turn!
-55 1
-[[3, 55], [3, 54], [2, 54], [1, 54], [1, 55]]
-[3, 55] 0 -1 1 55 3 54
-Picking powerups...
-decided not to teleport 17 22
-It's my turn!
-55 1
-[[3, 54], [2, 54], [1, 54], [1, 55]]
-[3, 54] -1 0 1 55 2 54
-Picking powerups...
-decided not to teleport 16 21
-It's my turn!
-55 1
-[[2, 54], [1, 54], [1, 55]]
-[2, 54] -1 0 1 55 1 54
-Picking powerups...
-decided not to teleport 15 20
-It's my turn!
-55 1
-[[1, 54], [1, 55]]
-[1, 54] 0 1 1 55 1 55
-Picking powerups...
-decided not to teleport 16 19
-It's my turn!
-55 0
-[[1, 55], [0, 55]]
-[1, 55] -1 0 0 55 0 55
-Picking powerups...
-decided not to teleport 17 18
-It's my turn!
-59 0
-[[0, 55], [0, 56], [0, 57], [0, 58], [0, 59]]
-[0, 55] 0 1 0 59 0 56
-Picking powerups...
-decided not to teleport 15 10
-It's my turn!
-59 0
-[[0, 56], [0, 57], [0, 58], [0, 59]]
-[0, 56] 0 1 0 59 0 57
-Picking powerups...
-decided not to teleport 16 11
-It's my turn!
-59 0
-[[0, 57], [0, 58], [0, 59]]
-[0, 57] 0 1 0 59 0 58
-Picking powerups...
-decided not to teleport 17 12
-It's my turn!
-59 0
-[[0, 58], [0, 59]]
-[0, 58] 0 1 0 59 0 59
-Picking powerups...
-decided not to teleport 18 13
-It's my turn!
-61 15
-[[0, 59], [1, 59], [1, 58], [1, 57], [1, 56], [1, 55], [1, 54], [2, 54], [3, 54], [4, 54], [5, 54], [6, 54], [7, 54], [7, 55], [7, 56], [7, 57], [7, 58], [8, 58], [8, 59], [8, 60], [9, 60], [10, 60], [10, 61], [11, 61], [12, 61], [13, 61], [14, 61], [15, 61]]
-[0, 59] 1 0 15 61 1 59
-Picking powerups...
-decided not to teleport 17 12
-It's my turn!
-61 15
-[[1, 59], [1, 58], [1, 57], [1, 56], [1, 55], [1, 54], [2, 54], [3, 54], [4, 54], [5, 54], [6, 54], [7, 54], [7, 55], [7, 56], [7, 57], [7, 58], [8, 58], [8, 59], [8, 60], [9, 60], [10, 60], [10, 61], [11, 61], [12, 61], [13, 61], [14, 61], [15, 61]]
-[1, 59] 0 -1 15 61 1 58
-Picking powerups...
-decided not to teleport 16 13
-It's my turn!
-44 4
-[[1, 58], [1, 57], [1, 56], [1, 55], [1, 54], [1, 53], [1, 52], [1, 51], [1, 50], [2, 50], [3, 50], [4, 50], [4, 49], [4, 48], [4, 47], [4, 46], [4, 45], [4, 44]]
-[1, 58] 0 -1 4 44 1 57
-Picking powerups...
-decided not to teleport 15 14
-It's my turn!
-44 4
-[[1, 57], [1, 56], [1, 55], [1, 54], [1, 53], [1, 52], [1, 51], [1, 50], [1, 49], [2, 49], [3, 49], [4, 49], [4, 48], [4, 47], [4, 46], [4, 45], [4, 44]]
-[1, 57] 0 -1 4 44 1 56
-Got into an auction.
-Picking powerups...
-vc [(0, 40, 49, 29), (1, 39, 47, 27), (1, 40, 48, 28), (3, 11, 17, 15), (3, 13, 19, 13), (3, 44, 50, 30), (4, 10, 15, 15), (4, 12, 17, 13), (4, 21, 26, 6), (4, 36, 41, 21), (4, 37, 42, 22), (4, 43, 48, 28), (4, 45, 50, 30), (5, 22, 26, 6), (5, 36, 40, 20), (5, 37, 41, 21), (5, 44, 48, 28), (6, 21, 24, 4), (8, 3, 4, 18), (14, 10, 15, 15), (15, 11, 17, 15)] (6, 21, 24, 4) (8, 3, 4, 18)
-teleport to:  8,3
-It's my turn!
-teleporting to: 8,3
-Picking powerups...
-decided not to teleport 0 0
-It's my turn!
-2 8
-[[8, 3], [8, 2]]
-[8, 3] 0 -1 8 2 8 2
-Picking powerups...
-decided not to teleport 12 10
-It's my turn!
-2 7
-[[8, 2], [7, 2]]
-[8, 2] -1 0 7 2 7 2
-Picking powerups...
-decided not to teleport 11 11
-It's my turn!
-3 7
-[[7, 2], [7, 3]]
-[7, 2] 0 1 7 3 7 3
-Picking powerups...
-decided not to teleport 10 12
-It's my turn!
-3 9
-[[7, 3], [8, 3], [9, 3]]
-[7, 3] 1 0 9 3 8 3
-Picking powerups...
-decided not to teleport 11 11
-It's my turn!
-3 9
-[[8, 3], [9, 3]]
-[8, 3] 1 0 9 3 9 3
-Picking powerups...
-decided not to teleport 12 10
-It's my turn!
-0 3
-[[9, 3], [8, 3], [7, 3], [7, 2], [7, 1], [6, 1], [6, 0], [5, 0], [4, 0], [3, 0]]
-[9, 3] -1 0 3 0 8 3
-Picking powerups...
-decided not to teleport 11 9
-It's my turn!
-0 3
-[[8, 3], [7, 3], [7, 2], [7, 1], [6, 1], [5, 1], [4, 1], [3, 1], [3, 0]]
-[8, 3] -1 0 3 0 7 3
-Picking powerups...
-vc [(0, 40, 22, 44), (1, 39, 20, 42), (1, 40, 21, 43), (3, 11, 10, 12), (3, 13, 8, 14), (3, 44, 23, 45), (4, 10, 12, 10), (4, 12, 10, 12), (4, 36, 16, 36), (4, 37, 17, 37), (4, 43, 23, 43), (4, 45, 25, 45), (5, 36, 17, 35), (5, 37, 18, 36), (5, 44, 25, 43), (14, 10, 22, 14), (15, 11, 22, 16)] (4, 10, 12, 10) (3, 13, 8, 14)
-teleport to:  3,13
-It's my turn!
-teleporting to: 3,13
-Picking powerups...
-decided not to teleport 0 7
-It's my turn!
-12 3
-[[3, 13], [3, 12]]
-[3, 13] 0 -1 3 12 3 12
-Picking powerups...
-decided not to teleport 1 8
-It's my turn!
-11 4
-[[3, 12], [4, 12], [4, 11]]
-[3, 12] 1 0 4 11 4 12
-Picking powerups...
-decided not to teleport 0 9
-It's my turn!
-11 4
-[[4, 12], [4, 11]]
-[4, 12] 0 -1 4 11 4 11
-Picking powerups...
-decided not to teleport 11 20
-It's my turn!
-13 4
-[[4, 11], [4, 12], [4, 13]]
-[4, 11] 0 1 4 13 4 12
-GG
-
-[3, 60] 0 -1 0 59 3 59
-Picking powerups...
-decided not to teleport 22 17
-It's my turn!
-59 0
-[[3, 59], [3, 58], [3, 57], [3, 56], [3, 55], [3, 54], [2, 54], [1, 54], [0, 54], [0, 55], [0, 56], [0, 57], [0, 58], [0, 59]]
-[3, 59] 0 -1 0 59 3 58
-Picking powerups...
-decided not to teleport 21 16
-It's my turn!
-59 0
-[[3, 58], [3, 57], [3, 56], [3, 55], [3, 54], [2, 54], [1, 54], [0, 54], [0, 55], [0, 56], [0, 57], [0, 58], [0, 59]]
-[3, 58] 0 -1 0 59 3 57
-Picking powerups...
-decided not to teleport 20 15
-It's my turn!
-55 1
-[[3, 57], [3, 56], [3, 55], [3, 54], [2, 54], [1, 54], [1, 55]]
-[3, 57] 0 -1 1 55 3 56
-Picking powerups...
-decided not to teleport 19 16
-It's my turn!
-55 0
-[[3, 56], [3, 55], [3, 54], [2, 54], [1, 54], [0, 54], [0, 55]]
-[3, 56] 0 -1 0 55 3 55
-Picking powerups...
-decided not to teleport 18 17
-It's my turn!
-55 6
-[[3, 55], [4, 55], [5, 55], [6, 55]]
-[3, 55] 1 0 6 55 4 55
-Picking powerups...
-decided not to teleport 10 15
-It's my turn!
-55 6
-[[4, 55], [5, 55], [6, 55]]
-[4, 55] 1 0 6 55 5 55
-Picking powerups...
-decided not to teleport 11 16
-It's my turn!
-55 6
-[[5, 55], [6, 55]]
-[5, 55] 1 0 6 55 6 55
-Picking powerups...
-decided not to teleport 12 17
-It's my turn!
-55 7
-[[6, 55], [7, 55]]
-[6, 55] 1 0 7 55 7 55
-Picking powerups...
-decided not to teleport 13 18
-It's my turn!
-54 7
-[[7, 55], [7, 54]]
-[7, 55] 0 -1 7 54 7 54
-Picking powerups...
-decided not to teleport 12 17
-It's my turn!
-56 8
-[[7, 54], [8, 54], [8, 55], [8, 56]]
-[7, 54] 1 0 8 56 8 54
-Picking powerups...
-decided not to teleport 13 16
-It's my turn!
-56 8
-[[8, 54], [8, 55], [8, 56]]
-[8, 54] 0 1 8 56 8 55
-Picking powerups...
-decided not to teleport 14 15
-It's my turn!
-56 8
-[[8, 55], [8, 56]]
-[8, 55] 0 1 8 56 8 56
-Got into an auction.
-Picking powerups...
-vc [(0, 40, 29, 49), (1, 39, 27, 47), (1, 40, 28, 48), (3, 11, 15, 17), (3, 13, 13, 19), (3, 44, 30, 50), (4, 10, 15, 15), (4, 12, 13, 17), (4, 21, 6, 26), (4, 36, 21, 41), (4, 37, 22, 42), (4, 43, 28, 48), (4, 45, 30, 50), (5, 22, 6, 26), (5, 36, 20, 40), (5, 37, 21, 41), (5, 44, 28, 48), (6, 21, 4, 24), (8, 3, 18, 4), (14, 10, 15, 15), (15, 11, 15, 17)] (8, 3, 18, 4) (6, 21, 4, 24)
-teleport to:  6,21
-It's my turn!
-teleporting to: 6,21
-Picking powerups...
-decided not to teleport 0 0
-It's my turn!
-21 5
-[[6, 21], [5, 21]]
-[6, 21] -1 0 5 21 5 21
-Picking powerups...
-decided not to teleport 10 12
-It's my turn!
-22 6
-[[5, 21], [6, 21], [6, 22]]
-[5, 21] 1 0 6 22 6 21
-Picking powerups...
-decided not to teleport 11 11
-It's my turn!
-22 6
-[[6, 21], [6, 22]]
-[6, 21] 0 1 6 22 6 22
-Picking powerups...
-decided not to teleport 12 10
-It's my turn!
-22 5
-[[6, 22], [5, 22]]
-[6, 22] -1 0 5 22 5 22
-Picking powerups...
-decided not to teleport 11 11
-It's my turn!
-22 3
-[[5, 22], [4, 22], [3, 22]]
-[5, 22] -1 0 3 22 4 22
-Picking powerups...
-decided not to teleport 10 12
-It's my turn!
-22 3
-[[4, 22], [3, 22]]
-[4, 22] -1 0 3 22 3 22
-Picking powerups...
-decided not to teleport 9 11
-It's my turn!
-21 3
-[[3, 22], [3, 21]]
-[3, 22] 0 -1 3 21 3 21
-Picking powerups...
-decided not to teleport 8 10
-It's my turn!
-19 3
-[[3, 21], [3, 20], [3, 19]]
-[3, 21] 0 -1 3 19 3 20
-Picking powerups...
-decided not to teleport 7 0
-It's my turn!
-19 3
-[[3, 20], [3, 19]]
-[3, 20] 0 -1 3 19 3 19
-Picking powerups...
-decided not to teleport 8 1
-It's my turn!
-19 2
-[[3, 19], [2, 19]]
-[3, 19] -1 0 2 19 2 19
-Picking powerups...
-decided not to teleport 9 0
-It's my turn!
-18 1
-[[2, 19], [1, 19], [1, 18]]
-[2, 19] -1 0 1 18 1 19
-Picking powerups...
-decided not to teleport 20 11
-It's my turn!
-18 1
-[[1, 19], [1, 18]]
-[1, 19] 0 -1 1 18 1 18
-GG
-Server Started
-Team andy connected...
-Team jimmy connected...
-Server closed
 pygame 2.0.1 (SDL 2.0.14, Python 3.8.2)
 Hello from the pygame community. https://www.pygame.org/contribute.html
-Replay over.
+Picking powerups...
+It's my turn!
+50 11
+[[10, 53], [11, 53], [11, 52], [11, 51], [11, 50]]
+[10, 53] 1 0 11 50 11 53
+Picking powerups...
+It's my turn!
+50 11
+[[11, 53], [11, 52], [11, 51], [11, 50]]
+[11, 53] 0 -1 11 50 11 52
+Picking powerups...
+It's my turn!
+50 11
+[[11, 52], [11, 51], [11, 50]]
+[11, 52] 0 -1 11 50 11 51
+Picking powerups...
+It's my turn!
+50 11
+[[11, 51], [11, 50]]
+[11, 51] 0 -1 11 50 11 50
+Picking powerups...
+It's my turn!
+50 11
+[]
+Picking powerups...
+It's my turn!
+50 11
+[]
+Picking powerups...
+It's my turn!
+50 11
+[]
+Picking powerups...
+It's my turn!
+50 11
+[]
+Picking powerups...
+It's my turn!
+50 11
+[]
+Picking powerups...
+It's my turn!
+50 11
+[]
+Picking powerups...
+It's my turn!
+50 11
+[]
+Picking powerups...
+It's my turn!
+50 11
+[]
+Picking powerups...
+It's my turn!
+50 11
+[]
+Picking powerups...
+It's my turn!
+50 11
+[]
+Picking powerups...
+It's my turn!
+50 11
+[]
+Picking powerups...
+It's my turn!
+50 11
+[]
+Picking powerups...
+It's my turn!
+50 11
+[]
+Picking powerups...
+It's my turn!
+50 11
+[]
+Picking powerups...
+It's my turn!
+50 11
+[]
+Picking powerups...
+It's my turn!
+50 11
+[]
+Picking powerups...
+It's my turn!
+50 11
+[]
+Picking powerups...
+It's my turn!
+46 10
+[[11, 50], [10, 50], [10, 49], [10, 48], [10, 47], [10, 46]]
+[11, 50] -1 0 10 46 10 50
+Picking powerups...
+It's my turn!
+46 10
+[[10, 50], [10, 49], [10, 48], [10, 47], [10, 46]]
+[10, 50] 0 -1 10 46 10 49
+Picking powerups...
+It's my turn!
+46 10
+[[10, 49], [10, 48], [10, 47], [10, 46]]
+[10, 49] 0 -1 10 46 10 48
+Picking powerups...
+It's my turn!
+46 10
+[[10, 48], [10, 47], [10, 46]]
+[10, 48] 0 -1 10 46 10 47
+Picking powerups...
+It's my turn!
+46 10
+[[10, 47], [10, 46]]
+[10, 47] 0 -1 10 46 10 46
+Picking powerups...
+It's my turn!
+43 10
+[[10, 46], [10, 45], [10, 44], [10, 43]]
+[10, 46] 0 -1 10 43 10 45
+Picking powerups...
+It's my turn!
+43 10
+[[10, 45], [10, 44], [10, 43]]
+[10, 45] 0 -1 10 43 10 44
+Picking powerups...
+It's my turn!
+43 10
+[[10, 44], [10, 43]]
+[10, 44] 0 -1 10 43 10 43
+Picking powerups...
+It's my turn!
+32 8
+[[10, 43], [9, 43], [8, 43], [8, 42], [7, 42], [6, 42], [5, 42], [4, 42], [3, 42], [2, 42], [2, 41], [2, 40], [3, 40], [4, 40], [5, 40], [6, 40], [6, 39], [6, 38], [6, 37], [6, 36], [6, 35], [6, 34], [6, 33], [6, 32], [7, 32], [8, 32]]
+[10, 43] -1 0 8 32 9 43
+Picking powerups...
+It's my turn!
+32 8
+[[9, 43], [8, 43], [8, 42], [7, 42], [6, 42], [5, 42], [4, 42], [3, 42], [2, 42], [2, 41], [2, 40], [3, 40], [4, 40], [5, 40], [5, 39], [5, 38], [5, 37], [5, 36], [6, 36], [7, 36], [7, 35], [7, 34], [7, 33], [7, 32], [8, 32]]
+[9, 43] -1 0 8 32 8 43
+Got into an auction.
+Picking powerups...
+It's my turn!
+40 3
+[[3, 43], [3, 42], [2, 42], [2, 41], [2, 40], [3, 40]]
+[3, 43] 0 -1 3 40 3 42
+Picking powerups...
+It's my turn!
+40 3
+[[3, 42], [2, 42], [2, 41], [2, 40], [3, 40]]
+[3, 42] -1 0 3 40 2 42
+Picking powerups...
+It's my turn!
+40 3
+[[2, 42], [2, 41], [2, 40], [3, 40]]
+[2, 42] 0 -1 3 40 2 41
+Picking powerups...
+It's my turn!
+40 3
+[[2, 41], [2, 40], [3, 40]]
+[2, 41] 0 -1 3 40 2 40
+Picking powerups...
+It's my turn!
+40 3
+[[2, 40], [3, 40]]
+[2, 40] 1 0 3 40 3 40
+Picking powerups...
+It's my turn!
+38 3
+[[3, 40], [3, 39], [3, 38]]
+[3, 40] 0 -1 3 38 3 39
+Picking powerups...
+It's my turn!
+38 3
+[[3, 39], [3, 38]]
+[3, 39] 0 -1 3 38 3 38
+Picking powerups...
+It's my turn!
+32 8
+[[3, 38], [4, 38], [5, 38], [5, 37], [6, 37], [6, 36], [6, 35], [7, 35], [7, 34], [8, 34], [8, 33], [8, 32]]
+[3, 38] 1 0 8 32 4 38

@@ -34,12 +34,48 @@ def get_value_at(array, me_x, me_y, x, y, distance_penalty_factor=1):
     return value_at
 
 
+def get_cluster_value(game_map, items, y, x, cluster_size):
+    total_value = 0
+    for row in range(max(0, y - cluster_size), min(game_map.rows, y + cluster_size + 1)):
+        for col in range(max(0, x - cluster_size), min(game_map.cols, x + cluster_size + 1)):
+            if manhattan_distance(x, y, col, row) <= cluster_size:
+                total_value += items[row][col]
+    
+    return total_value
+
+
+
 def play_powerup(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
+    global teleport_to
+    me_y, me_x = me.location
+    op_y, op_x = opponent.location
+    
     ## HUNTING MODE - finding clusters of powerups that are well worth teleporting to, that are far away from the opponent
 
     min_cluster_value_threshold = 150
     cluster_size = 2 # max manhattan distance from central element
     min_distance_threshold = 10 # if the player is closer than this, then there is no point teleporting
+
+    possible_clusters = []
+    # find all dragonfruits on the map
+    for y in range(game_map.rows):
+        for x in range(game_map.cols):
+            dist_to_opponent = manhattan_distance(x, y, op_x, op_y)
+            dist_to_player = manhattan_distance(x, y, me_x, me_y)
+            if max(dist_to_opponent, dist_to_player) > min_distance_threshold:
+                continue
+
+            cluster_value = get_cluster_value(game_map, items, y, x, cluster_size)
+
+            if cluster_value > min_cluster_value_threshold:
+                possible_clusters.append((y, x, cluster_value))
+    
+    possible_clusters.sort(key = lambda x: -x[2]) # cluster value, sorted descending
+
+    if len(possible_clusters) > 0:
+        # let's go there
+        teleport_to = f'{possible_clusters[0][0]},{possible_clusters[0][1]}'
+        return teleport_to
 
 
 
@@ -60,9 +96,6 @@ def play_powerup(game_map: Map, me: Player, opponent: Player, items: list, new_i
     min_value_threshold = 60 # including cell and all surrounding
     opponent_max_distance_threshold = 8
     opponent_min_distance_threshold = 3
-
-    me_y, me_x = me.location
-    op_y, op_x = opponent.location
 
     value_coords = []
     # find all dragonfruits on the map
@@ -91,7 +124,6 @@ def play_powerup(game_map: Map, me: Player, opponent: Player, items: list, new_i
 
     print('vc', value_coords, players_closest, opponents_closest)
 
-    global teleport_to
     teleport_to = f'{opponents_closest[0]},{opponents_closest[1]}'
 
     print('teleport to: ', teleport_to)
