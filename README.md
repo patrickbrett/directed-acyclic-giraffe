@@ -13,7 +13,7 @@ pip3 install ai-arena-21
 aiarena21 the_giraffe_himself the_giraffe_himself
 ```
 
-Our final bot that was used in the submission (which somehow won despite occasionally wasting all its money on portal guns, with hilarity ensuing for everyone watching the finals) is 'the_giraffe_himself.py'. It has not been modified since the competition and should not be used as an example of general code cleanliness :)
+Our final bot that was used in the submission (which won thanks to pretty decent bidding and pathfinding despite occasionally wasting all its money on portal guns, with hilarity ensuing for everyone watching the finals) is 'the_giraffe_himself.py'. It has not been modified since the competition and should not be used as an example of general code cleanliness :)
 
 All other bots we experimented with, many of which share characteristics with the final submission, can be found in the 'experimental_bots/' folder.
 
