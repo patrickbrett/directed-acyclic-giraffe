@@ -10,8 +10,24 @@ pip3 install ai-arena-21
 aiarena21 the_giraffe_himself the_giraffe_himself
 ```
 
-Our final bot that was used in the submission (which won 1st place) is 'the_giraffe_himself.py'. It has not been modified since the competition and should not be used as an example of general code cleanliness :)
+Our final bot that was used in the submission (which won 1st place despite occasionally wasting all its money on portal guns, with hilarity ensuing for everyone watching the finals) is 'the_giraffe_himself.py'. It has not been modified since the competition and should not be used as an example of general code cleanliness :)
 
 All other bots we experimented with, many of which share characteristics with the final submission, can be found in the 'experimental_bots/' folder.
 
-Competition instructions and info is in the instruction document provided (docs/DocV1.pdf)
+Competition instructions and info are in the instruction document provided (docs/DocV1.pdf)
+
+### What's with the name?
+
+This is a directed acyclic graph:
+
+![misc/directed-acyclic-graph.png](Directed Acylic Graph)
+
+This is a giraffe:
+
+![misc/giraffe.jpeg](Just a normal giraffe)
+
+And here is a world-first image detailing the combination of the two, the Directed Acyclic Giraffe:
+
+![misc/directed_acyclic_giraffe.jpeg](Directed Acyclic Giraffe)
+
+The grand final ended up being between us and another bot called 'correct horse battery staple' ([https://xkcd.com/936/](XKCD reference)), so it was a battle of the mammals 🐴 🦒
