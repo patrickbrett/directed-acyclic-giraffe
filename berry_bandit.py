@@ -67,6 +67,11 @@ def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_i
         while not game_map.is_free(r, c):
             places[i] = (random.randint(0, max_r), random.randint(0, max_c))
             r, c = places[i]
+        
+    # add more random places
+    num_random_to_add = 10
+    for i in range(num_random_to_add):
+        places.append((random.randint(0, max_r), random.randint(0, max_c)))
     
     print('places: ', places)
     
