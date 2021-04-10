@@ -5,17 +5,15 @@ from timeit import default_timer as timer
 
 
 def play_powerup(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
-    global Total_Rounds
-    Total_Rounds = 100
     vehicles = ['bike', 'portal gun', '']
     cost = [30, 100, 0]
     best_veh, best_score = '', -float("inf")
     for i, vehicle in enumerate(vehicles):
         start = timer()
         next_move, value = path_search(game_map, me, opponent, items, new_items, heatmap,
-                                          remaining_turns, depth=35, vehicle=vehicle, discount=0.7)
+                                          remaining_turns, depth=35, vehicle=vehicle)
         value -= cost[i]
-        print(value, timer() - start)
+        print(timer() - start)
         if value > best_score:
             best_veh, best_score = vehicle, value
 
@@ -23,6 +21,8 @@ def play_powerup(game_map: Map, me: Player, opponent: Player, items: list, new_i
 
 
 def play_turn(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
+    if remaining_turns < 80:
+        print(play_auction(game_map, me, opponent, items, new_items, heatmap, remaining_turns))
     """
     head example:
         (row, col)
@@ -33,7 +33,6 @@ def play_turn(game_map: Map, me: Player, opponent: Player, items: list, new_item
         vehicle = "bike"
     elif me.portal_gun:
         vehicle = 'portal gun'
-    print("remaining_turns", remaining_turns)
     max_move, max_value = path_search(game_map, me, opponent, items, new_items, heatmap, remaining_turns,
                                       depth=50, vehicle=vehicle)
     print(timer() - start)
@@ -100,6 +99,7 @@ def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_i
     return bid_rounded
 
 
+
 def play_transport(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
     if worst_square is not None:
         print('sending opponent to the worst square: ', worst_square)
@@ -138,7 +138,7 @@ def generate_moves(game_map, origin, vehicle=""):
 
 
 def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_items: list,
-                heatmap, remaining_turns, depth=40, vehicle="", discount=0.9):
+                heatmap, remaining_turns, depth=50, vehicle=""):
     available = {tuple(me.location)}
     paths = [[[] for _ in range(game_map.cols)] for _ in range(game_map.rows)]
     paths[me.location[0]][me.location[1]] = [tuple(me.location)]
@@ -152,7 +152,6 @@ def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_it
     vehicle_moves = {'bike': 3, 'portal gun': 1, '': 0}[vehicle]
     for d in range(depth):
         new_available = set()
-        next_fruit_spawn = (remaining_turns - 1 - Total_Rounds) % 20
         if d >= vehicle_moves:
             vehicle = ""
         for head in available:
@@ -163,10 +162,8 @@ def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_it
                 # calculate new value
                 new_value = value[pre_r][pre_c]
                 if move not in paths[pre_r][pre_c]:
-                    square_value = items[r][c]
-                    if d >= next_fruit_spawn:
-                        square_value += heatmap[r][c] * 0.9 ** d
-                    new_value += square_value * discount ** d
+                    new_value += items[r][c] * 0.99 ** d
+                    new_value += heatmap[r][c] / 100
                 # consider update cell
                 if new_value > value[r][c]:
                     value[r][c], paths[r][c] = new_value, paths[pre_r][pre_c] + [move]
@@ -179,23 +176,6 @@ def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_it
     return max_move, max_value
 
 
-
 class PlaceFormatted:
     def __init__(self, place_tuple):
         self.location = place_tuple
-
-
-
-
-if __name__ == "__main__":
-    class StubMap:
-        def __init__(self):
-            self.rows = 10
-            self.cols = 10
-
-        def is_free(self, *args):
-            return True
-
-
-    g = StubMap()
-    print(generate_moves(g, (5,5), "bike"))
