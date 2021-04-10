@@ -74,7 +74,8 @@ def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_i
     x_loc = places[0]
     x = float('inf')
     for place in places:
-        place_loc, place_value = path_search(game_map, opponent, me, items, new_items, heatmap, remaining_turns, depth=20)
+        place_formatted = PlaceFormatted(place)
+        place_loc, place_value = path_search(game_map, place_formatted, opponent, items, new_items, heatmap, remaining_turns, depth=20)
         if place_value < x:
             x = place_value
             x_loc = place_loc
@@ -86,11 +87,11 @@ def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_i
     # amount to bid
     required_profit = 0.2 # 20% profit on bid
     bid = ((g - x) - (x - m)) * (1 - required_profit)
-    bid = max(int(bid), 0)
+    bid_rounded = max(int(bid), 0)
 
-    print('bidding: ', bid)
+    print('bidding: ', bid_rounded, ' (unrounded):', bid)
 
-    return bid
+    return bid_rounded
 
 
 
@@ -168,3 +169,8 @@ def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_it
         available = new_available
     if max_move is None: max_move = me.location
     return max_move, max_value
+
+
+class PlaceFormatted:
+    def __init__(self, place_tuple):
+        self.location = place_tuple
