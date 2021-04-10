@@ -1,6 +1,6 @@
 # Directed Acyclic Giraffe
 
-AI Arena 2021 Bot - 1st Place!
+AI Arena 2021 Bot - 1st Place! 🥇
 
 ![Gameplay screenshot](images/gameplay_screenshot.png)
 
