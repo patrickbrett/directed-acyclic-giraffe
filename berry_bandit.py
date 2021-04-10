@@ -139,7 +139,7 @@ def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_it
     paths[me.location[0]][me.location[1]] = [tuple(me.location)]
     value = [[-1] * game_map.cols for _ in range(game_map.rows)]
     value[me.location[0]][me.location[1]] = 0
-    depth = min(50, remaining_turns)
+    depth = min(depth, remaining_turns)
     value_per_item = 10
 
     max_move, max_value = None, -1
