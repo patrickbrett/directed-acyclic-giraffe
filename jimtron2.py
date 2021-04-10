@@ -3,21 +3,21 @@ from aiarena21.client.classes import Player, Map
 import random
 from timeit import default_timer as timer
 
-total_rounds = None
+Total_Rounds = None
 
 def play_powerup(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
-    global total_rounds
-    if total_rounds is None: total_rounds = remaining_turns
   
+    global Total_Rounds
+    if Total_Rounds is None: Total_Rounds = remaining_turns
     vehicles = ['bike', 'portal gun', '']
     cost = [30, 100, 0]
     best_veh, best_score = '', -float("inf")
     for i, vehicle in enumerate(vehicles):
         start = timer()
         next_move, value = path_search(game_map, me, opponent, items, new_items, heatmap,
-                                          remaining_turns, depth=35, vehicle=vehicle)
+                                          remaining_turns, depth=35, vehicle=vehicle, discount=0.7)
         value -= cost[i]
-        #print(timer() - start)
+        print(value, timer() - start)
         if value > best_score:
             best_veh, best_score = vehicle, value
 
@@ -25,22 +25,22 @@ def play_powerup(game_map: Map, me: Player, opponent: Player, items: list, new_i
 
 
 def play_turn(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
-    #if remaining_turns < 80:
-        #print(play_auction(game_map, me, opponent, items, new_items, heatmap, remaining_turns))
     """
     head example:
         (row, col)
     """
-    print("The Giraffe Himself: "+me.name)
+    print(Total_Rounds)
+    print('jimtron2: '+me.name+', '+str(me.score))
     start = timer()
     vehicle = ""
     if me.bike:
         vehicle = "bike"
     elif me.portal_gun:
         vehicle = 'portal gun'
+    print("remaining_turns", remaining_turns)
     max_move, max_value = path_search(game_map, me, opponent, items, new_items, heatmap, remaining_turns,
                                       depth=50, vehicle=vehicle)
-    #print(timer() - start)
+    print(timer() - start)
     return f'{max_move[0]},{max_move[1]}'
 
 
@@ -50,7 +50,7 @@ def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_i
     player_max_move, m = path_search(game_map, me, opponent, items, new_items, heatmap, remaining_turns,
                                       depth=20)
 
-    #print('player m', player_max_move, m)
+    print('player m', player_max_move, m)
 
     # find the value of the opponent's square
 
@@ -58,7 +58,7 @@ def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_i
     opp_max_move, g = path_search(game_map, opponent, me, items, new_items, heatmap, remaining_turns,
                                       depth=20)
 
-    #print('opp g', opp_max_move, g)
+    print('opp g', opp_max_move, g)
 
     # find the value of the worst spot on the map
 
@@ -72,13 +72,8 @@ def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_i
         while not game_map.is_free(r, c):
             places[i] = (random.randint(0, max_r), random.randint(0, max_c))
             r, c = places[i]
-        
-    # add more random places
-    num_random_to_add = 10
-    for i in range(num_random_to_add):
-        places.append((random.randint(0, max_r), random.randint(0, max_c)))
     
-    #print('places: ', places)
+    print('places: ', places)
     
     # find value of each place
     x_loc = places[0]
@@ -90,7 +85,7 @@ def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_i
             x = place_value
             x_loc = place_loc
     
-    #print('worst square', x_loc, x)
+    print('worst square', x_loc, x)
     global worst_square
     worst_square = x_loc
     
@@ -99,7 +94,7 @@ def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_i
     bid = ((g - x) - (x - m)) * (1 - required_profit)
     bid_rounded = max(int(bid), 0)
 
-    #print('bidding: ', bid_rounded, ' (unrounded):', bid)
+    print('bidding: ', bid_rounded, ' (unrounded):', bid)
 
     return bid_rounded
 
@@ -107,7 +102,6 @@ def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_i
 
 def play_transport(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
     if worst_square is not None:
-        #print('sending opponent to the worst square: ', worst_square)
         return f'{worst_square[0]},{worst_square[1]}'
     
     return f'{random.randint(0, game_map.rows - 1)},{random.randint(0, game_map.cols - 1)}'
@@ -144,12 +138,13 @@ def generate_moves(game_map, origin, vehicle=""):
 
 def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_items: list,
                 heatmap, remaining_turns, depth=40, vehicle="", discount=0.9):
+
     available = {tuple(me.location)}
     paths = [[[] for _ in range(game_map.cols)] for _ in range(game_map.rows)]
     paths[me.location[0]][me.location[1]] = [tuple(me.location)]
     value = [[-1] * game_map.cols for _ in range(game_map.rows)]
     value[me.location[0]][me.location[1]] = 0
-    depth = min(depth, remaining_turns)
+    depth = min(50, remaining_turns)
     value_per_item = 10
 
     max_move, max_value = None, -1
@@ -157,7 +152,7 @@ def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_it
     vehicle_moves = {'bike': 3, 'portal gun': 1, '': 0}[vehicle]
     for d in range(depth):
         new_available = set()
-        next_fruit_spawn = (remaining_turns - 1 - total_rounds)% 20
+        next_fruit_spawn = (remaining_turns - 1 - Total_Rounds) % 20
         if d >= vehicle_moves:
             vehicle = ""
         for head in available:
@@ -176,13 +171,25 @@ def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_it
                 if new_value > value[r][c]:
                     value[r][c], paths[r][c] = new_value, paths[pre_r][pre_c] + [move]
                 # consider update max
-                if new_value > max_value and len(paths[r][c]) >= 2:
-                        max_value, max_move = new_value, paths[r][c][1]
+                if new_value > max_value:
+                    max_value, max_move = new_value, paths[r][c][1]
                 new_available.add(move)
         available = new_available
     if max_move is None: max_move = me.location
     return max_move, max_value
 
-class PlaceFormatted:
-    def __init__(self, place_tuple):
-        self.location = place_tuple
+
+
+
+if __name__ == "__main__":
+    class StubMap:
+        def __init__(self):
+            self.rows = 10
+            self.cols = 10
+
+        def is_free(self, *args):
+            return True
+
+
+    g = StubMap()
+    print(generate_moves(g, (5,5), "bike"))
