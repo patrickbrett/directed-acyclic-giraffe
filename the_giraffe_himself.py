@@ -210,17 +210,19 @@ class PlaceFormatted:
 
 
 def get_multiplier(opponent, move, d, opp_max_path, z=1):
-    if opp_max_path == None:
+    if opp_max_path == None or True:
         return 1 # no multiplier
 
     # check if move is in the path
     dest_r, dest_c = move
     if move in opp_max_path:
         g = opp_max_path.index(move)
+    else:
+        return 1
     
     m = d
-    if g > m:
-        multiplier = 1 + (g - m) ** (-z)
+    if g > m and g < 5:
+        multiplier = 1 + ((g - m) ** (-z)) * 0.5
     elif g < m:
         multiplier = 0.5 * g / m
     else: # g == m
