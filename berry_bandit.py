@@ -80,6 +80,8 @@ def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_i
             x_loc = place_loc
     
     print('worst square', x_loc, x)
+    global worst_square
+    worst_square = x_loc
     
     # amount to bid
     required_profit = 0.2 # 20% profit on bid
@@ -93,6 +95,10 @@ def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_i
 
 
 def play_transport(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
+    if worst_square is not None:
+        print('sending opponent to the worst square: ', worst_square)
+        return f'{worst_square[0]},{worst_square[1]}'
+    
     return f'{random.randint(0, game_map.rows - 1)},{random.randint(0, game_map.cols - 1)}'
 
 
