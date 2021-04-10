@@ -51,7 +51,7 @@ def play_turn(game_map: Map, me: Player, opponent: Player, items: list, new_item
                                       depth=50, vehicle=opp_vehicle, ret_path=True)
 
     max_move, max_value = path_search(game_map, me, opponent, items, new_items, heatmap, remaining_turns,
-                                      depth=50, vehicle=me_vehicle, opp)
+                                      depth=50, vehicle=me_vehicle, opp_max_path=opp_max_path)
     #print(timer() - start)
     return f'{max_move[0]},{max_move[1]}'
 
@@ -155,7 +155,7 @@ def generate_moves(game_map, origin, vehicle=""):
 
 
 def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_items: list,
-                heatmap, remaining_turns, depth=40, vehicle="", discount=0.9, ret_path=False):
+                heatmap, remaining_turns, depth=40, vehicle="", discount=0.9, ret_path=False, opp_max_path=None):
     available = {tuple(me.location)}
     paths = [[[] for _ in range(game_map.cols)] for _ in range(game_map.rows)]
     paths[me.location[0]][me.location[1]] = [tuple(me.location)]
@@ -185,6 +185,9 @@ def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_it
                     if d >= next_fruit_spawn:
                         square_value += heatmap[r][c] * 0.9 ** d
                     new_value += square_value * discount ** d
+
+                    multiplier = get_multiplier(opponent, move, d, opp_max_path)
+                    new_value *= multiplier
                 # consider update cell
                 if new_value > value[r][c]:
                     value[r][c], paths[r][c] = new_value, paths[pre_r][pre_c] + [move]
@@ -204,3 +207,23 @@ def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_it
 class PlaceFormatted:
     def __init__(self, place_tuple):
         self.location = place_tuple
+
+
+def get_multiplier(opponent, move, d, opp_max_path, z=1):
+    if opp_max_path == None:
+        return 1 # no multiplier
+
+    # check if move is in the path
+    dest_r, dest_c = move
+    if move in opp_max_path:
+        g = opp_max_path.index(move)
+    
+    m = d
+    if g > m:
+        multiplier = 1 + (g - m) ** (-z)
+    elif g < m:
+        multiplier = 0.5 * g / m
+    else: # g == m
+        multiplier = 1
+    
+    return multiplier
