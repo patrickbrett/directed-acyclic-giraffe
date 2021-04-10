@@ -24,6 +24,15 @@ def play_powerup(game_map: Map, me: Player, opponent: Player, items: list, new_i
     return best_veh
 
 
+def parse_vehicle(player):
+    vehicle = ""
+    if player.bike:
+        vehicle = "bike"
+    elif player.portal_gun:
+        vehicle = 'portal gun'
+    return vehicle
+
+
 def play_turn(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
     #if remaining_turns < 80:
         #print(play_auction(game_map, me, opponent, items, new_items, heatmap, remaining_turns))
@@ -33,13 +42,16 @@ def play_turn(game_map: Map, me: Player, opponent: Player, items: list, new_item
     """
     print("The Giraffe Himself: "+me.name)
     start = timer()
-    vehicle = ""
-    if me.bike:
-        vehicle = "bike"
-    elif me.portal_gun:
-        vehicle = 'portal gun'
+
+    me_vehicle = parse_vehicle(me)
+    opp_vehicle = parse_vehicle(opponent)
+    
+    # find opp best move
+    opp_max_path, opp_max_move, opp_max_value = path_search(game_map, opponent, me, items, new_items, heatmap, remaining_turns,
+                                      depth=50, vehicle=opp_vehicle, ret_path=True)
+
     max_move, max_value = path_search(game_map, me, opponent, items, new_items, heatmap, remaining_turns,
-                                      depth=50, vehicle=vehicle)
+                                      depth=50, vehicle=me_vehicle, opp)
     #print(timer() - start)
     return f'{max_move[0]},{max_move[1]}'
 
@@ -143,7 +155,7 @@ def generate_moves(game_map, origin, vehicle=""):
 
 
 def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_items: list,
-                heatmap, remaining_turns, depth=40, vehicle="", discount=0.9):
+                heatmap, remaining_turns, depth=40, vehicle="", discount=0.9, ret_path=False):
     available = {tuple(me.location)}
     paths = [[[] for _ in range(game_map.cols)] for _ in range(game_map.rows)]
     paths[me.location[0]][me.location[1]] = [tuple(me.location)]
@@ -154,6 +166,7 @@ def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_it
 
     max_move, max_value = None, -1
 
+    max_path = None
     vehicle_moves = {'bike': 3, 'portal gun': 1, '': 0}[vehicle]
     for d in range(depth):
         new_available = set()
@@ -178,9 +191,14 @@ def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_it
                 # consider update max
                 if new_value > max_value and len(paths[r][c]) >= 2:
                         max_value, max_move = new_value, paths[r][c][1]
+                        max_path = paths[r][c]
                 new_available.add(move)
         available = new_available
     if max_move is None: max_move = me.location
+
+    if ret_path:
+        return max_path, max_move, max_value
+
     return max_move, max_value
 
 class PlaceFormatted:
