@@ -21,6 +21,9 @@ def play_powerup(game_map: Map, me: Player, opponent: Player, items: list, new_i
         if value > best_score:
             best_veh, best_score = vehicle, value
 
+    if remaining_turns < 15:
+        best_veh = ''
+
     return best_veh
 
 
@@ -109,7 +112,7 @@ def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_i
     # amount to bid
     required_profit = 0.2 # 20% profit on bid
     bid = ((g - x) - (x - m)) * (1 - required_profit)
-    bid_rounded = max(int(bid), 0)
+    bid_rounded = min(max(int(bid), 0), 100)
 
     #print('bidding: ', bid_rounded, ' (unrounded):', bid)
 
