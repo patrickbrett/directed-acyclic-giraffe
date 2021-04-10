@@ -5,21 +5,19 @@ from timeit import default_timer as timer
 
 
 def play_powerup(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
-    global Total_Rounds
-    Total_Rounds = 100
-    vehicles = ['bike', 'portal gun', '']
-    cost = [30, 100, 0]
-    best_veh, best_score = '', -float("inf")
-    for i, vehicle in enumerate(vehicles):
-        start = timer()
-        next_move, value = path_search(game_map, me, opponent, items, new_items, heatmap,
-                                          remaining_turns, depth=35, vehicle=vehicle, discount=0.7)
-        value -= cost[i]
-        print(value, timer() - start)
-        if value > best_score:
-            best_veh, best_score = vehicle, value
+    # vehicles = ['bike', 'portal gun', '']
+    # cost = [30, 100, 0]
+    # best_veh, best_score = '', -float("inf")
+    # for i, vehicle in enumerate(vehicles):
+    #     start = timer()
+    #     next_move, value = path_search(game_map, me, opponent, items, new_items, heatmap,
+    #                                       remaining_turns, depth=35, vehicle=vehicle)
+    #     value -= cost[i]
+    #     print(value, timer() - start)
+    #     if value > best_score:
+    #         best_veh, best_score = vehicle, value
 
-    return best_veh
+    return ""
 
 
 def play_turn(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
@@ -33,7 +31,6 @@ def play_turn(game_map: Map, me: Player, opponent: Player, items: list, new_item
         vehicle = "bike"
     elif me.portal_gun:
         vehicle = 'portal gun'
-    print("remaining_turns", remaining_turns)
     max_move, max_value = path_search(game_map, me, opponent, items, new_items, heatmap, remaining_turns,
                                       depth=50, vehicle=vehicle)
     print(timer() - start)
@@ -92,7 +89,6 @@ def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_it
     vehicle_moves = {'bike': 3, 'portal gun': 1, '': 0}[vehicle]
     for d in range(depth):
         new_available = set()
-        next_fruit_spawn = (remaining_turns - 1 - Total_Rounds) % 20
         if d >= vehicle_moves:
             vehicle = ""
         for head in available:
@@ -103,10 +99,8 @@ def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_it
                 # calculate new value
                 new_value = value[pre_r][pre_c]
                 if move not in paths[pre_r][pre_c]:
-                    square_value = items[r][c]
-                    if d >= next_fruit_spawn:
-                        square_value += heatmap[r][c] * 0.9 ** d
-                    new_value += square_value * discount ** d
+                    new_value += items[r][c] * discount ** d
+                    new_value += heatmap[r][c] / 100
                 # consider update cell
                 if new_value > value[r][c]:
                     value[r][c], paths[r][c] = new_value, paths[pre_r][pre_c] + [move]
