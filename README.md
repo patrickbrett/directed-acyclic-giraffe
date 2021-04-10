@@ -20,14 +20,14 @@ Competition instructions and info are in the instruction document provided (docs
 
 This is a directed acyclic graph:
 
-![misc/directed-acyclic-graph.png](Directed Acylic Graph)
+![Directed Acylic Graph](misc/directed-acyclic-graph.png)
 
 This is a giraffe:
 
-![misc/giraffe.jpeg](Just a normal giraffe)
+![Just a normal giraffe](misc/giraffe.jpeg)
 
 And here is a world-first image detailing the combination of the two, the Directed Acyclic Giraffe:
 
-![misc/directed_acyclic_giraffe.jpeg](Directed Acyclic Giraffe)
+![Directed Acyclic Giraffe](misc/directed_acyclic_giraffe.jpeg)
 
 The grand final ended up being between us and another bot called 'correct horse battery staple' ([https://xkcd.com/936/](XKCD reference)), so it was a battle of the mammals 🐴 🦒
