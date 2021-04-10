@@ -67,6 +67,11 @@ def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_i
         while not game_map.is_free(r, c):
             places[i] = (random.randint(0, max_r), random.randint(0, max_c))
             r, c = places[i]
+        
+    # add more random places
+    num_random_to_add = 10
+    for i in range(num_random_to_add):
+        places.append((random.randint(0, max_r), random.randint(0, max_c)))
     
     print('places: ', places)
     
@@ -74,7 +79,8 @@ def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_i
     x_loc = places[0]
     x = float('inf')
     for place in places:
-        place_loc, place_value = path_search(game_map, opponent, me, items, new_items, heatmap, remaining_turns, depth=20)
+        place_formatted = PlaceFormatted(place)
+        place_loc, place_value = path_search(game_map, place_formatted, opponent, items, new_items, heatmap, remaining_turns, depth=20)
         if place_value < x:
             x = place_value
             x_loc = place_loc
@@ -86,11 +92,11 @@ def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_i
     # amount to bid
     required_profit = 0.2 # 20% profit on bid
     bid = ((g - x) - (x - m)) * (1 - required_profit)
-    bid = max(int(bid), 0)
+    bid_rounded = max(int(bid), 0)
 
-    print('bidding: ', bid)
+    print('bidding: ', bid_rounded, ' (unrounded):', bid)
 
-    return bid
+    return bid_rounded
 
 
 
@@ -138,7 +144,7 @@ def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_it
     paths[me.location[0]][me.location[1]] = [tuple(me.location)]
     value = [[-1] * game_map.cols for _ in range(game_map.rows)]
     value[me.location[0]][me.location[1]] = 0
-    depth = min(50, remaining_turns)
+    depth = min(depth, remaining_turns)
     value_per_item = 10
 
     max_move, max_value = None, -1
@@ -168,3 +174,8 @@ def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_it
         available = new_available
     if max_move is None: max_move = me.location
     return max_move, max_value
+
+
+class PlaceFormatted:
+    def __init__(self, place_tuple):
+        self.location = place_tuple
