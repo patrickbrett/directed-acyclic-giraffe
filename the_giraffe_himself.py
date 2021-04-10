@@ -15,7 +15,7 @@ def play_powerup(game_map: Map, me: Player, opponent: Player, items: list, new_i
     for i, vehicle in enumerate(vehicles):
         start = timer()
         next_move, value = path_search(game_map, me, opponent, items, new_items, heatmap,
-                                          remaining_turns, depth=35, vehicle=vehicle)
+                                          remaining_turns, depth=35, vehicle=vehicle, discount=0.7)
         value -= cost[i]
         #print(timer() - start)
         if value > best_score:
@@ -186,7 +186,7 @@ def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_it
                 if move not in paths[pre_r][pre_c]:
                     square_value = items[r][c]
                     if d >= next_fruit_spawn:
-                        square_value += heatmap[r][c] * 0.9 ** d
+                        square_value += 0.7 * heatmap[r][c] * 0.9 ** d
                     new_value += square_value * discount ** d
 
                     multiplier = get_multiplier(opponent, move, d, opp_max_path)
@@ -213,7 +213,7 @@ class PlaceFormatted:
 
 
 def get_multiplier(opponent, move, d, opp_max_path, z=1):
-    if opp_max_path == None or True:
+    if opp_max_path == None:
         return 1 # no multiplier
 
     # check if move is in the path
