@@ -41,7 +41,58 @@ def play_turn(game_map: Map, me: Player, opponent: Player, items: list, new_item
 
 
 def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
-    return 0
+    # find the value of player's square
+
+    player_max_move, m = path_search(game_map, me, opponent, items, new_items, heatmap, remaining_turns,
+                                     depth=20)
+
+    print('player m', player_max_move, m)
+
+    # find the value of the opponent's square
+
+    # notice that 'me' and 'opponent' args are swapped here
+    opp_max_move, g = path_search(game_map, opponent, me, items, new_items, heatmap, remaining_turns,
+                                  depth=20)
+
+    print('opp g', opp_max_move, g)
+
+    # find the value of the worst spot on the map
+
+    # check the four corners plus the centre
+    max_r = game_map.rows - 1
+    max_c = game_map.cols - 1
+    places = [(0, 0), (max_r, 0), (0, max_c), (max_r, max_c), (max_r // 2, max_c // 2)]
+    # if any are in walls, replace them with somewhere random
+    for i in range(len(places)):
+        r, c = places[i]
+        while not game_map.is_free(r, c):
+            places[i] = (random.randint(0, max_r), random.randint(0, max_c))
+            r, c = places[i]
+
+    print('places: ', places)
+
+    # find value of each place
+    x_loc = places[0]
+    x = float('inf')
+    for place in places:
+        place_loc, place_value = path_search(game_map, opponent, me, items, new_items, heatmap, remaining_turns,
+                                             depth=20)
+        if place_value < x:
+            x = place_value
+            x_loc = place_loc
+
+    print('worst square', x_loc, x)
+    global worst_square
+    worst_square = x_loc
+
+    # amount to bid
+    required_profit = 0.2  # 20% profit on bid
+    bid = ((g - x) - (x - m)) * (1 - required_profit)
+    bid = max(int(bid), 0)
+
+    print('bidding: ', bid)
+
+    return bid
 
 
 def play_transport(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
@@ -84,7 +135,7 @@ def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_it
     paths[me.location[0]][me.location[1]] = [tuple(me.location)]
     value = [[-1] * game_map.cols for _ in range(game_map.rows)]
     value[me.location[0]][me.location[1]] = 0
-    depth = min(50, remaining_turns)
+    depth = min(depth, remaining_turns)
     value_per_item = 10
 
     max_move, max_value = None, -1
@@ -111,8 +162,8 @@ def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_it
                 if new_value > value[r][c]:
                     value[r][c], paths[r][c] = new_value, paths[pre_r][pre_c] + [move]
                 # consider update max
-                if new_value > max_value:
-                    max_value, max_move = new_value, paths[r][c][1]
+                if new_value > max_value and len(paths[r][c]) >= 2:
+                        max_value, max_move = new_value, paths[r][c][1]
                 new_available.add(move)
         available = new_available
     if max_move is None: max_move = me.location
