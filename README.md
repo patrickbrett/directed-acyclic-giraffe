@@ -15,7 +15,7 @@ aiarena21 the_giraffe_himself the_giraffe_himself
 
 The file 'the_giraffe_himself.py' contains our final bot submission, which won thanks to pretty decent bidding and pathfinding abilities, as well as strong ability to make the most of the bicycle powerup. This was in spite of occasionally wasting all its money on portal guns - with hilarity ensuing for everyone watching the finals. It has not been modified since the competition and should not be used as an example of general code cleanliness :)
 
-All other bots we experimented with, many of which share characteristics with the final submission, can be found in the 'experimental_bots/' folder.
+All other bots we experimented with, many of which share characteristics with the final submission, can be found in the 'experimental_bots' folder.
 
 Competition instructions and info are in the instruction document provided (docs/DocV1.pdf)
 
