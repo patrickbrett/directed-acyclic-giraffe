@@ -30,4 +30,4 @@ And here is a world-first image detailing the combination of the two, the Direct
 
 ![Directed Acyclic Giraffe](misc/directed_acyclic_giraffe.jpg)
 
-The grand final ended up being between us and another bot called 'correct horse battery staple' ([https://xkcd.com/936/](XKCD reference)), so it was a battle of the mammals 🐴 🦒
+The grand final ended up being between us and another bot called 'correct horse battery staple' ([XKCD reference](https://xkcd.com/936/)), so it was a battle of the mammals 🐴 🦒
