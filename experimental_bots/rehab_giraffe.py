@@ -160,18 +160,6 @@ def generate_moves(game_map, origin, vehicle=""):
                     moves.add((r, c))
     return moves
 
-'''
-On teleporting:
-The problem of teleporting too many times occurs when enough rounds have passed, such that squares may often have very high values.
-The problem comes from us teleporting due to valuing the /potential/ value of a new square as 100 more than the current one:
-Not the immediate value, but the potential value, assuming we don't teleport immediately after.
-When we calculate normal moves, we take into account the other normal moves after having made that move. The value 
-of the square we're moving to 
-If we teleport though, that potential value is squandered, so while teleporting twice in a row may seem like the best play,
-it's because we overest
-
-'''
-
 def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_items: list,
                 heatmap, remaining_turns, depth=40, vehicle="", discount=0.9, ret_path=False, opp_max_path=None):
     available = {tuple(me.location)}
