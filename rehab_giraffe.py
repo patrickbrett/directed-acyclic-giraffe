@@ -4,11 +4,16 @@ import random
 from timeit import default_timer as timer
 
 total_rounds = None
+teleportation_debt = 0
+pre_score = 0
 
 def play_powerup(game_map: Map, me: Player, opponent: Player, items: list, new_items: list, heatmap, remaining_turns):
-    global total_rounds
+    global total_rounds, teleportation_debt, pre_score
     if total_rounds is None: total_rounds = remaining_turns
-  
+    points_gained_last_turn = max(0, me.score - pre_score)
+    teleportation_debt = max(0, teleportation_debt - points_gained_last_turn)
+    pre_score = me.score
+
     vehicles = ['bike', 'portal gun', '']
     cost = [30, 100, 0]
     best_veh, best_score = '', -float("inf")
@@ -17,12 +22,14 @@ def play_powerup(game_map: Map, me: Player, opponent: Player, items: list, new_i
         next_move, value = path_search(game_map, me, opponent, items, new_items, heatmap,
                                           remaining_turns, depth=35, vehicle=vehicle, discount=0.7)
         value -= cost[i]
+        if vehicle == 'portal gun':
+          value -= teleportation_debt
         #print(timer() - start)
         if value > best_score:
             best_veh, best_score = vehicle, value
-
-    if remaining_turns < 15:
-        best_veh = ''
+             
+        if best_veh == 'portal gun':
+          teleportation_debt += 100
 
     return best_veh
 
@@ -77,7 +84,7 @@ def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_i
     # check the four corners plus the centre
     max_r = game_map.rows - 1
     max_c = game_map.cols - 1
-    places = [(0, 0), (max_r, 0), (0, max_c), (max_r, max_c), (max_r // 2, max_c // 2)]
+    places = [(0, 0), (1, 1), (max_r, 0), (max_r-1, 1), (0, max_c), (1, max_c-1), (max_r, max_c), (max_r-1, max_c-1), (max_r // 2, max_c // 2)]
     # if any are in walls, replace them with somewhere random
     for i in range(len(places)):
         r, c = places[i]
@@ -86,7 +93,7 @@ def play_auction(game_map: Map, me: Player, opponent: Player, items: list, new_i
             r, c = places[i]
         
     # add more random places
-    num_random_to_add = 10
+    num_random_to_add = 20
     for i in range(num_random_to_add):
         places.append((random.randint(0, max_r), random.randint(0, max_c)))
     
@@ -153,6 +160,17 @@ def generate_moves(game_map, origin, vehicle=""):
                     moves.add((r, c))
     return moves
 
+'''
+On teleporting:
+The problem of teleporting too many times occurs when enough rounds have passed, such that squares may often have very high values.
+The problem comes from us teleporting due to valuing the /potential/ value of a new square as 100 more than the current one:
+Not the immediate value, but the potential value, assuming we don't teleport immediately after.
+When we calculate normal moves, we take into account the other normal moves after having made that move. The value 
+of the square we're moving to 
+If we teleport though, that potential value is squandered, so while teleporting twice in a row may seem like the best play,
+it's because we overest
+
+'''
 
 def path_search(game_map: Map, me: Player, opponent: Player, items: list, new_items: list,
                 heatmap, remaining_turns, depth=40, vehicle="", discount=0.9, ret_path=False, opp_max_path=None):
