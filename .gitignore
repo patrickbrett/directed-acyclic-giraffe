@@ -133,3 +133,6 @@ dmypy.json
 
 # replay
 replay.txt
+output.txt
+
+.DS_Store
